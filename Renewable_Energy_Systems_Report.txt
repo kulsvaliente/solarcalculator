@@ -1,0 +1,156 @@
+===============================================================================
+                    RENEWABLE ENERGY SYSTEMS REPORT
+                     System Installation Summary by Institution
+===============================================================================
+
+Report Generated: December 2024
+
+===============================================================================
+                              EXECUTIVE SUMMARY
+===============================================================================
+
+This report provides a comprehensive overview of renewable energy systems 
+installed across four major institutions. The data shows a total of 1,172 
+renewable energy systems installed across all institutions, with varying 
+installation patterns from 2023 to 2025.
+
+===============================================================================
+                              KEY STATISTICS
+===============================================================================
+
+• Total Systems Installed: 1,172
+• Number of Participating Institutions: 4
+• Installation Period: 2023-2025
+• Leading Institution: USTP (633 systems)
+
+===============================================================================
+                              VISUAL ANALYSIS
+===============================================================================
+
+Chart 1: Total Systems by Institution
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ USTP  ████████████████████████████████████████████████████████████████████████████ 633│
+│ MMSU  ████████████████████████████████████████████████████████████████████████     444│
+│ PSU   ████████████████████████████████████████████████████████████████              76│
+│ WMSU  ████████████████████████████████████████████████████████████                  19│
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Chart 2: Systems Installed by Year (All Institutions Combined)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 2023  ████████████████████████████████████████████████████████████████████████████ 498│
+│ 2025  ████████████████████████████████████████████████████████████████████████████ 405│
+│ 2024  ████████████████████████████████████████████████████████████████████████████ 269│
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Chart 3: Institution Performance by Year (2023 Comparison)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ MMSU  ████████████████████████████████████████████████████████████████████████████ 329│
+│ USTP  ████████████████████████████████████████████████████████████████████████████ 159│
+│ WMSU  ████████████████████████████████████████████████████████████                  10│
+│ PSU   ████████████████████████████████████████████████████████████                   0│
+└─────────────────────────────────────────────────────────────────────────────┘
+Note: Chart shows 2023 installations for comparison
+
+===============================================================================
+                        DETAILED INSTITUTION BREAKDOWN
+===============================================================================
+
+MMSU (Mariano Marcos State University)
+• Total Systems: 444
+• 2023: 329 systems
+• 2024: 14 systems
+• 2025: 101 systems
+
+WMSU (Western Mindanao State University)
+• Total Systems: 19
+• 2023: 10 systems
+• 2024: 0 systems
+• 2025: 9 systems
+
+USTP (University of Science and Technology of Southern Philippines)
+• Total Systems: 633
+• 2023: 159 systems
+• 2024: 207 systems
+• 2025: 267 systems
+
+PSU (Palawan State University)
+• Total Systems: 76
+• 2023: 0 systems
+• 2024: 48 systems
+• 2025: 28 systems
+
+===============================================================================
+                            ANALYSIS AND INSIGHTS
+===============================================================================
+
+• USTP leads in total installations with 633 systems (54% of total)
+• MMSU shows the most consistent installation pattern across all years
+• 2025 shows the highest projected installations with 405 total systems
+• PSU demonstrates strong growth starting in 2024
+• 2023 was the peak installation year with 498 systems across all institutions
+
+===============================================================================
+                            MARKET SHARE ANALYSIS
+===============================================================================
+
+Institution        Systems    Percentage    Market Share
+─────────────────────────────────────────────────────────
+USTP               633        54.0%        ████████████████████████████████████████████████████████████
+MMSU               444        37.9%        ████████████████████████████████████████████████████████
+PSU                 76         6.5%        ████████████████████████████████
+WMSU                19         1.6%        ████████████████
+─────────────────────────────────────────────────────────
+TOTAL             1,172      100.0%
+
+===============================================================================
+                              YEARLY TRENDS
+===============================================================================
+
+Year     Total Systems    Growth Rate    Key Highlights
+─────────────────────────────────────────────────────────
+2023     498             -              Peak installation year
+2024     269             -46.0%         Significant decrease
+2025     405             +50.6%         Strong projected recovery
+
+===============================================================================
+                            INSTITUTIONAL INSIGHTS
+===============================================================================
+
+EARLY ADOPTERS (2023):
+• MMSU: 329 systems (66% of their total)
+• USTP: 159 systems (25% of their total)
+• WMSU: 10 systems (53% of their total)
+
+GROWTH INSTITUTIONS (2024-2025):
+• PSU: Started in 2024, strong 2025 projection
+• USTP: Consistent growth across all years
+• MMSU: Diversified installation timeline
+
+LATE STARTERS:
+• PSU: No installations in 2023, but strong 2024-2025 performance
+
+===============================================================================
+                              RECOMMENDATIONS
+===============================================================================
+
+1. CAPACITY BUILDING:
+   • Share best practices from USTP and MMSU with PSU and WMSU
+   • Focus on institutional capacity building for smaller institutions
+
+2. RESOURCE ALLOCATION:
+   • USTP's success model should be replicated across other institutions
+   • Additional support needed for WMSU to increase installation capacity
+
+3. TIMELINE OPTIMIZATION:
+   • PSU's 2024-2025 growth pattern suggests effective late-stage adoption
+   • Consider phased implementation strategies for future institutions
+
+4. KNOWLEDGE SHARING:
+   • Establish regular coordination meetings between institutions
+   • Create shared resource platforms for technical expertise
+
+===============================================================================
+
+Generated by ARECGIS System - December 2024
+
+===============================================================================

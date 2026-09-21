@@ -1,0 +1,422 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* || VARIABLES */
+
+:root {
+  /* COLORS */
+  /* --BGCOLOR: #f0ebf8; */
+  --BGCOLOR: #fffdd0;
+  
+  /* --BORDER-COLOR: #FFF;
+  --COLOR: #FFF;
+  --ERROR: firebrick;
+  --INACTIVE: lightgray;
+  --LINK-COLOR: whitesmoke;
+  --LINK-HOVER: rgba(245, 245, 245, 0.9);
+  --NOTE-BGCOLOR: hsla(240, 64%, 27%, 0.65);
+  --STATUS-COMPLETE: limegreen;
+  --STATUS-OPEN: firebrick;
+  --TABLE-BGCOLOR: #FFF;
+  --TABLE-COLOR: #000;
+  --INPUT-INVALID: #F00; */
+}
+
+body {
+  /* font-family: 'Nunito', sans-serif;
+  min-height: 100vh; */
+  /* background-color: var(--BGCOLOR); */
+   /* color: var(--COLOR); */
+  background-image: url('./img/web-background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  /*background-position: top right;
+  background-blend-mode: multiply; */
+}
+
+.solarEnergy {
+  fill-opacity: 0.65;
+  fill: #FFBF00;
+	stroke-width: 2px;
+	opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+.windEnergy {
+  fill-opacity: 0.65;
+  fill: #f3ebe8;
+	stroke-width: 2px;
+	opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+.biomassEnergy {
+  fill-opacity: 0.65;
+  fill: #947b4f;
+	stroke-width: 2px;
+	opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+.hydroPower {
+  fill-opacity: 0.65;
+  fill: #1e2f97;
+	stroke-width: 2px;
+	opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+.geothermalEnergy {
+  fill-opacity: 0.65;
+  fill: #F44336;
+  stroke-width: 2px;
+  opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+/* Powerlines styling */
+.powerlines-high-voltage {
+  stroke: #FF0000;
+  stroke-width: 4;
+  opacity: 0.8;
+}
+
+.powerlines-medium-voltage {
+  stroke: #FF6B35;
+  stroke-width: 3;
+  opacity: 0.8;
+}
+
+.powerlines-low-voltage {
+  stroke: #FFA500;
+  stroke-width: 2;
+  opacity: 0.8;
+}
+
+.powerlines-toggle {
+  transition: all 0.3s ease;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.powerlines-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.powerplants-toggle {
+  transition: all 0.3s ease;
+}
+
+.powerplants-toggle.active {
+  background-color: #FF9800 !important;
+  color: white !important;
+  border: 2px solid #FF9800 !important;
+}
+
+.powerplants-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.substations-toggle {
+  transition: all 0.3s ease;
+}
+
+.substations-toggle.active {
+  background-color: #3F51B5 !important;
+  color: white !important;
+  border: 2px solid #3F51B5 !important;
+}
+
+.substations-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Heatmap toggle */
+.heatmap-toggle { transition: all 0.3s ease; }
+.heatmap-toggle.active { background-color: #E91E63 !important; color: white !important; border: 2px solid #E91E63 !important; }
+.heatmap-toggle:hover { transform: scale(1.1); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+
+/* Heatmap Legend */
+.heatmap-legend {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  color: #333;
+  font-size: 12px;
+}
+.heatmap-legend .legend-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.heatmap-legend .legend-scale {
+  display: grid;
+  grid-template-columns: repeat(5, 18px);
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.heatmap-legend .legend-scale span {
+  display: inline-block;
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+}
+.heatmap-legend .legend-labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Generic map legend */
+.map-legend {
+  background: rgba(255,255,255,0.9);
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  color: #333;
+  font-size: 12px;
+  min-width: 160px;
+}
+.map-legend .title { font-weight: 600; margin-bottom: 6px; }
+.map-legend .item { display: flex; align-items: center; margin: 4px 0; }
+.map-legend .swatch {
+  width: 20px; height: 8px; border-radius: 2px; margin-right: 8px; border: 1px solid rgba(0,0,0,0.2);
+}
+.map-legend .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+.map-legend .square { width: 10px; height: 10px; margin-right: 8px; border: 2px solid #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+/* Power Plant Marker Styling */
+.leaflet-marker-icon.power-plant-marker {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Custom power plant marker styles */
+.power-plant-hydro {
+  background-color: #2196F3 !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.4) !important;
+}
+
+.power-plant-solar {
+  background-color: #FFC107 !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4) !important;
+}
+
+.power-plant-wind {
+  background-color: #4CAF50 !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4) !important;
+}
+
+.power-plant-coal {
+  background-color: #795548 !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(121, 85, 72, 0.4) !important;
+}
+
+.power-plant-gas {
+  background-color: #FF9800 !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4) !important;
+}
+
+/* Non-renewable commercial point styles (solid like renewables) */
+.coalPower {
+  fill-opacity: 0.65;
+  fill: #795548;
+  stroke-width: 2px;
+  opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+.naturalGasPower {
+  fill-opacity: 0.65;
+  fill: #FF9800;
+  stroke-width: 2px;
+  opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+.oilDieselPower {
+  fill-opacity: 0.65;
+  fill: #424242;
+  stroke-width: 2px;
+  opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+.nuclearPower {
+  fill-opacity: 0.65;
+  fill: #9C27B0;
+  stroke-width: 2px;
+  opacity: 1;
+  stroke: #000000;
+  stroke-opacity: 1;
+}
+
+/* Substation square symbol */
+.substation-box {
+  width: 12px;
+  height: 12px;
+}
+.substation-box-inner {
+  width: 100%;
+  height: 100%;
+  background: #3F51B5;
+  border: 2px solid #FFFFFF;
+  box-sizing: border-box;
+}
+
+.controlStyle {
+	width: 44px;
+	height: 44px;
+  cursor: pointer;
+}
+
+.controlStyle:focus {
+	outline: 3px solid #1976d2;
+	outline-offset: 2px;
+}
+
+.bgImage {
+  background-image: url('./img/sun-tornado.svg');
+  background-repeat: no-repeat;
+}
+
+/* Reveal skip link on focus for keyboard users */
+a[href="#main-content"]:focus {
+	position: static;
+	width: auto;
+	height: auto;
+	padding: 8px 12px;
+	background: #000;
+	color: #fff;
+	z-index: 9999;
+}
+
+/* Power Infrastructure Panel Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Leaflet styles for Solar Calculator */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom popup styling for solar calculator */
+.custom-popup .leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 8px 12px;
+  line-height: 1.4;
+  font-size: 13px;
+}
+
+.custom-popup .leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Print / Save report — one A4 page, with backgrounds/colors preserved (browsers strip them
+   by default unless told to keep them — otherwise "colored" report boxes print flat white). */
+@page {
+  size: A4 portrait;
+  margin: 10mm;
+}
+
+/* Print / Save report — isolates #solar-print-report on the printed page regardless of the
+   Results modal's own fixed positioning, height cap, and overflow:hidden/auto styling. */
+@media print {
+  html,
+  body,
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  .MuiDialog-root,
+  .MuiModal-root {
+    position: static !important;
+  }
+  .MuiBackdrop-root {
+    display: none !important;
+  }
+  .MuiDialog-paper {
+    position: static !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    box-shadow: none !important;
+  }
+  .MuiDialogContent-root {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* body's own background (the app's sun-tornado.svg image) sits behind body's children and
+     is untouched by `body * { visibility: hidden }` below — without this it prints on every
+     page regardless of what content is isolated. */
+  html,
+  body {
+    background: none !important;
+    background-image: none !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+  #solar-print-report,
+  #solar-print-report * {
+    visibility: visible;
+  }
+  #solar-print-report {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+

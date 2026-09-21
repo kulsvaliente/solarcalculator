@@ -1,0 +1,384 @@
+// Print / Save tab — a printable estimation report the user can save as PDF via the
+// browser's native print dialog (destination "Save as PDF"). No PDF library is used;
+// print.css in index.css isolates #solar-print-report so only this content is printed,
+// regardless of the Results modal's own scroll/overflow/backdrop styling.
+import React, { useMemo } from 'react';
+import { Box, Typography, Button, Divider, Grid, Table, TableBody, TableCell, TableHead, TableRow, Paper, Chip } from '@mui/material';
+import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
+import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
+import { computeSystemComparisonScenarios } from '../utils/systemComparisonScenarios';
+
+const peso = (value) =>
+  Number.isFinite(Number(value)) ? `₱${Math.round(Number(value)).toLocaleString()}` : '—';
+
+const number = (value, digits = 0) =>
+  Number.isFinite(Number(value)) ? Number(value).toLocaleString(undefined, { maximumFractionDigits: digits }) : '—';
+
+const PRINT_CELL = { '@media print': { py: '1px', fontSize: '8.5px' } };
+
+const InfoRow = ({ label, value }) => (
+  <TableRow>
+    <TableCell sx={{ color: '#607d8b', fontWeight: 600, border: 0, py: 0.5, width: '45%', ...PRINT_CELL }}>
+      {label}
+    </TableCell>
+    <TableCell sx={{ color: '#263238', fontWeight: 600, border: 0, py: 0.5, ...PRINT_CELL }}>{value}</TableCell>
+  </TableRow>
+);
+
+const PrintSaveReport = ({
+  locationName,
+  latitude,
+  longitude,
+  calculationMode,
+  area,
+  monthlyConsumptionKwh,
+  tilt,
+  azimuth,
+  panelSize,
+  rate,
+  daytimeUsePercent,
+  batterySizePercent,
+  results,
+  /** Same props MapComponent passes to <SystemComparison> — reused so this table always
+   *  shows the exact same cost/payback/ROI figures as the System Comparison tab. */
+  comparisonBaseParameters,
+  comparisonBaseResults
+}) => {
+  const handlePrint = () => window.print();
+
+  const isConsumptionMode = calculationMode === 'consumption';
+  /** Report title and "Recommended System" heading read differently depending on which
+   *  procedure produced the numbers — rooftop potential vs. a consumption-driven estimate. */
+  const reportTitle = isConsumptionMode
+    ? 'Solar System Estimation Report'
+    : 'Solar Rooftop Potential Report';
+  const systemSectionTitle = isConsumptionMode ? 'Recommended System' : 'Rooftop System Capacity';
+  const comparisonScenarios = useMemo(
+    () => computeSystemComparisonScenarios(comparisonBaseParameters, comparisonBaseResults),
+    [comparisonBaseParameters, comparisonBaseResults]
+  );
+  const generatedOn = new Date().toLocaleString('en-PH', {
+    dateStyle: 'long',
+    timeStyle: 'short'
+  });
+
+  return (
+    <Box sx={{ p: { xs: 2, sm: 3 } }}>
+      {/* On-screen controls — excluded from the printed page via .no-print */}
+      <Box
+        className="no-print"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: 2,
+          mb: 3,
+          p: 2,
+          borderRadius: 2,
+          bgcolor: '#e3f2fd',
+          border: '1px solid #90caf9'
+        }}
+      >
+        <Box>
+          <Typography sx={{ fontWeight: 700, color: '#1565c0' }}>
+            Save this estimation for your records
+          </Typography>
+          <Typography variant="body2" sx={{ color: '#37474f', mt: 0.5 }}>
+            Click Print, then choose <strong>"Save as PDF"</strong> as the destination to download it —
+            or send it straight to a printer.
+          </Typography>
+        </Box>
+        <Button
+          variant="contained"
+          startIcon={<PrintRoundedIcon />}
+          onClick={handlePrint}
+          sx={{
+            bgcolor: '#1976d2',
+            fontWeight: 700,
+            px: 3,
+            '&:hover': { bgcolor: '#1565c0' }
+          }}
+        >
+          Print / Save as PDF
+        </Button>
+      </Box>
+
+      {/* Printable report — sized to fit one A4 page: @page in index.css sets the sheet size
+          and margins, the '@media print' branches below shrink type/spacing to fit within it,
+          and print-color-adjust (also in index.css) keeps these backgrounds/colors in the PDF
+          instead of the flat black-on-white a browser prints by default. */}
+      <Paper
+        id="solar-print-report"
+        variant="outlined"
+        sx={{
+          p: { xs: 2.5, sm: 4 },
+          borderRadius: 2,
+          maxWidth: 900,
+          mx: 'auto',
+          '@media print': { p: '4mm', maxWidth: 'none', border: 'none' }
+        }}
+      >
+        <Box sx={{ textAlign: 'center', mb: 3, '@media print': { mb: 1 } }}>
+          <Typography variant="h5" sx={{ fontWeight: 700, color: '#1976d2', '@media print': { fontSize: '16px' } }}>
+            {reportTitle}
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{ color: '#607d8b', mt: 0.5, '@media print': { fontSize: '8.5px', mt: 0.25 } }}
+          >
+            Generated by the CARE Solar Rooftop Calculator &bull; {generatedOn}
+          </Typography>
+        </Box>
+
+        <Divider sx={{ mb: 2, '@media print': { mb: 1 } }} />
+
+        <Grid container spacing={3} sx={{ '@media print': { columnGap: '4mm' } }}>
+          <Grid item xs={12} sm={6}>
+            <Typography
+              variant="subtitle2"
+              sx={{ fontWeight: 700, color: '#00695c', mb: 0.5, '@media print': { fontSize: '10px', mb: 0 } }}
+            >
+              Site
+            </Typography>
+            <Table size="small">
+              <TableBody>
+                <InfoRow label="Location" value={locationName || '—'} />
+                <InfoRow
+                  label="Coordinates"
+                  value={
+                    Number.isFinite(Number(latitude)) && Number.isFinite(Number(longitude))
+                      ? `${Number(latitude).toFixed(5)}, ${Number(longitude).toFixed(5)}`
+                      : '—'
+                  }
+                />
+                <InfoRow
+                  label="Calculation procedure"
+                  value={isConsumptionMode ? 'Monthly Consumption' : 'Solar Rooftop Potential'}
+                />
+                {isConsumptionMode ? (
+                  <InfoRow
+                    label="Avg. monthly consumption"
+                    value={Number.isFinite(Number(monthlyConsumptionKwh)) ? `${number(monthlyConsumptionKwh)} kWh` : '—'}
+                  />
+                ) : (
+                  <InfoRow label="Roof area" value={Number.isFinite(Number(area)) ? `${number(area)} m²` : '—'} />
+                )}
+              </TableBody>
+            </Table>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Typography
+              variant="subtitle2"
+              sx={{ fontWeight: 700, color: '#00695c', mb: 0.5, '@media print': { fontSize: '10px', mb: 0 } }}
+            >
+              System parameters
+            </Typography>
+            <Table size="small">
+              <TableBody>
+                {!isConsumptionMode && <InfoRow label="Tilt" value={Number.isFinite(Number(tilt)) ? `${tilt}°` : '—'} />}
+                {!isConsumptionMode && (
+                  <InfoRow label="Azimuth" value={Number.isFinite(Number(azimuth)) ? `${azimuth}°` : '—'} />
+                )}
+                <InfoRow label="Panel size" value={Number.isFinite(Number(panelSize)) ? `${panelSize} kWp` : '—'} />
+                <InfoRow label="Electricity rate" value={Number.isFinite(Number(rate)) ? `₱${rate}/kWh` : '—'} />
+                <InfoRow
+                  label="Daytime use / Battery"
+                  value={`${number(daytimeUsePercent)}% / ${number(batterySizePercent)}%`}
+                />
+              </TableBody>
+            </Table>
+          </Grid>
+        </Grid>
+
+        <Divider sx={{ my: 2.5, '@media print': { my: 1 } }} />
+
+        <Typography
+          variant="subtitle2"
+          sx={{ fontWeight: 700, color: '#00695c', mb: 1.5, '@media print': { fontSize: '10px', mb: 0.5 } }}
+        >
+          {systemSectionTitle}
+        </Typography>
+        <Grid container spacing={1.5} sx={{ mb: 1, '@media print': { mb: 0 } }}>
+          {[
+            { label: 'System Capacity', value: Number.isFinite(Number(results?.systemCapacity)) ? `${number(results.systemCapacity, 2)} kW` : '—' },
+            { label: 'Panel Count', value: Number.isFinite(Number(results?.panelCount)) ? `${number(results.panelCount)} panels` : '—' },
+            { label: 'Est. Annual Production', value: Number.isFinite(Number(results?.annualProduction)) ? `${number(results.annualProduction)} kWh` : '—' },
+            { label: 'Est. Annual Savings', value: peso(results?.annualSavings) }
+          ].map((stat) => (
+            <Grid item xs={6} sm={3} key={stat.label}>
+              <Box
+                sx={{
+                  p: 1.5,
+                  borderRadius: 2,
+                  border: '1px solid #cfd8dc',
+                  textAlign: 'center',
+                  height: '100%',
+                  '@media print': { p: '2mm', borderRadius: 1 }
+                }}
+              >
+                <Typography
+                  variant="caption"
+                  sx={{ color: '#607d8b', display: 'block', '@media print': { fontSize: '7.5px' } }}
+                >
+                  {stat.label}
+                </Typography>
+                <Typography sx={{ fontWeight: 700, color: '#263238', '@media print': { fontSize: '10px' } }}>
+                  {stat.value}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+
+        <Divider sx={{ my: 2.5, '@media print': { my: 1 } }} />
+
+        <Typography
+          variant="subtitle2"
+          sx={{ fontWeight: 700, color: '#00695c', mb: 1, '@media print': { fontSize: '10px', mb: 0.5 } }}
+        >
+          System Cost &amp; Payback by Configuration
+        </Typography>
+        <Table size="small">
+          <TableHead>
+            <TableRow
+              sx={{
+                '& th': {
+                  fontWeight: 700,
+                  color: '#37474f',
+                  borderBottom: '2px solid #cfd8dc',
+                  '@media print': { py: '1px', fontSize: '8.5px' }
+                }
+              }}
+            >
+              <TableCell>Configuration</TableCell>
+              <TableCell>Estimated Cost Range</TableCell>
+              <TableCell>Payback Period</TableCell>
+              <TableCell>ROI</TableCell>
+              <TableCell>Battery Capacity</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {comparisonScenarios.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={5} sx={{ color: '#90a4ae', ...PRINT_CELL }}>
+                  Not available — run Calculate to populate System Comparison first.
+                </TableCell>
+              </TableRow>
+            )}
+            {comparisonScenarios.map((scenario) => (
+              <TableRow key={scenario.id}>
+                <TableCell sx={{ fontWeight: 600, ...PRINT_CELL }}>{scenario.name}</TableCell>
+                <TableCell sx={PRINT_CELL}>
+                  {scenario.cost.min === scenario.cost.max
+                    ? peso(scenario.cost.min)
+                    : `${peso(scenario.cost.min)} – ${peso(scenario.cost.max)}`}
+                </TableCell>
+                <TableCell sx={PRINT_CELL}>
+                  {scenario.paybackPeriod != null ? `${scenario.paybackPeriod} years` : '—'}
+                </TableCell>
+                <TableCell sx={PRINT_CELL}>{scenario.roi != null ? `${scenario.roi}%` : '—'}</TableCell>
+                <TableCell sx={PRINT_CELL}>
+                  {scenario.batteryCapacityKwh != null ? `${scenario.batteryCapacityKwh.toFixed(1)} kWh` : '—'}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+
+        <Divider sx={{ my: 2.5, '@media print': { my: 1 } }} />
+
+        <Grid container spacing={1.5} sx={{ '@media print': { columnGap: '4mm' } }}>
+          <Grid item xs={12} sm={6}>
+            <Box
+              sx={{
+                height: '100%',
+                p: 2,
+                borderRadius: 2,
+                bgcolor: '#fff8e1',
+                border: '1px solid #ffe082',
+                '@media print': { p: '2.5mm', borderRadius: 1 }
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1, '@media print': { mb: 0.5, gap: 0.5 } }}>
+                <WarningAmberRoundedIcon sx={{ color: '#e65100', fontSize: 20, '@media print': { fontSize: 12 } }} />
+                <Typography sx={{ fontWeight: 700, color: '#e65100', '@media print': { fontSize: '9px' } }}>
+                  Considerations Before You Rely on These Numbers
+                </Typography>
+              </Box>
+              <Typography
+                variant="body2"
+                sx={{ color: '#5d4037', lineHeight: 1.7, '@media print': { fontSize: '7.5px', lineHeight: 1.4 } }}
+              >
+                This report is generated from standardized formulas, average solar irradiance data, and
+                indicative market pricing ranges — it is a planning estimate, not a formal quotation.
+                Actual figures can differ, sometimes significantly, because of: equipment brand and quality,
+                installation complexity and labor rates, site-specific shading or roof condition, freight and
+                import costs, financing terms, and how supplier pricing has moved since this estimate was
+                generated. Two installers can quote very different amounts for the same system size, and
+                neither is necessarily "wrong" — treat any quotation that looks unusually low or high as
+                worth double-checking rather than dismissing outright. Please obtain a formal, itemized
+                quotation from a licensed solar installer before making any purchasing or financing decision.
+                For questions about this estimate, contact{' '}
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=care@mmsu.edu.ph"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#1976d2', fontWeight: 700, textDecoration: 'none' }}
+                >
+                  care@mmsu.edu.ph
+                </a>
+                .
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Box
+              sx={{
+                height: '100%',
+                p: 2,
+                borderRadius: 2,
+                bgcolor: '#eceff1',
+                border: '1px solid #cfd8dc',
+                '@media print': { p: '2.5mm', borderRadius: 1 }
+              }}
+            >
+              <Typography sx={{ fontWeight: 700, color: '#37474f', mb: 1, '@media print': { fontSize: '9px', mb: 0.5 } }}>
+                Scope of This Tool
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: '#455a64', lineHeight: 1.7, '@media print': { fontSize: '7.5px', lineHeight: 1.4 } }}
+              >
+                The calculator provides estimates based on user-supplied inputs and standard solar
+                computation parameters; it does not perform on-site engineering assessments, structural
+                inspections, or shading analyses, and the figures it generates are indicative rather than
+                guaranteed values. The system does not handle procurement, financing transactions,
+                permitting, or actual installation. Its accuracy is bounded by the assumptions and
+                reference values used in its computations, and outcomes in practice may vary with weather,
+                equipment quality, installation, and utility rates.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+
+        <Box sx={{ textAlign: 'center', mt: 3, '@media print': { mt: 1 } }}>
+          <Chip
+            label="Estimate only — not a formal quotation"
+            size="small"
+            sx={{
+              bgcolor: '#eceff1',
+              color: '#455a64',
+              fontWeight: 600,
+              '@media print': { height: '14px', fontSize: '7px', '& .MuiChip-label': { px: '4px' } }
+            }}
+          />
+        </Box>
+      </Paper>
+    </Box>
+  );
+};
+
+export default PrintSaveReport;

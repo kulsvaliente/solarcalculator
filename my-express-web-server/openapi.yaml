@@ -1,0 +1,1983 @@
+openapi: 3.0.0
+info:
+  title: Renewable Energy Inventory API
+  description: |
+    API for managing renewable energy installations, users, blogs, and transfers.
+    Provides authentication, inventory management, and reporting features.
+    
+    Last updated: 2025-08-05
+    Maintained by: Dextie
+  version: 1.2.0
+  contact:
+    name: Support Team
+    email: support@renewableenergyapp.com
+servers:
+  - url: http://localhost:3001
+    description: Development server
+  - url: https://staging-api.renewableenergyapp.com
+    description: Staging server
+  - url: https://api.renewableenergyapp.com
+    description: Production server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "60d21b4667d0d8992e610c85"
+        username:
+          type: string
+          example: "johndoe"
+        roles:
+          type: array
+          items:
+            type: string
+            enum: [Admin, Manager, Installer, User]
+          example: ["Installer", "User"]
+        active:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - username
+        - roles
+        - active
+    
+    Inventory:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "60d21b4667d0d8992e610c85"
+        user:
+          type: string
+          description: User ID of owner
+          example: "60d21b4667d0d8992e610c85"
+        type:
+          type: string
+          example: "Point"
+        coordinates:
+          type: array
+          items:
+            type: number
+          example: [125.6789, 8.9456]
+        properties:
+          type: object
+          properties:
+            ownerName:
+              type: string
+              example: "John Smith"
+            reCat:
+              type: string
+              example: "Solar Energy"
+              enum: ["Solar Energy", "Wind Energy", "Hydropower", "Biomass", "Geothermal Energy"]
+            reClass:
+              type: string
+              example: "Commercial"
+            yearEst:
+              type: string
+              example: "2022"
+            acquisition:
+              type: string
+              example: "Purchase"
+            isNetMetered:
+              type: string
+              enum: ["Yes", "No"]
+              example: "Yes"
+            ownUse:
+              type: string
+              enum: ["Yes", "No"]
+              example: "Yes"
+            address:
+              type: object
+              properties:
+                country:
+                  type: string
+                  example: "Philippines"
+                region:
+                  type: string
+                  example: "Region XI"
+                province:
+                  type: string
+                  example: "Davao del Sur"
+                city:
+                  type: string
+                  example: "Davao City"
+                brgy:
+                  type: string
+                  example: "Buhangin"
+            fit:
+              type: object
+              properties:
+                eligible:
+                  type: boolean
+                  example: true
+                phase:
+                  type: string
+                  example: "FIT2"
+                rate:
+                  type: number
+                  example: 8.69
+        assessment:
+          type: object
+          properties:
+            solarUsage:
+              type: string
+              example: "Power Generation"
+            capacity:
+              type: string
+              example: "5.6"
+            annualEnergyProduction:
+              type: string
+              example: "8760"
+            solarSystemTypes:
+              type: string
+              enum: ["Off-grid", "Grid-tied", "Hybrid"]
+              example: "Grid-tied"
+            geothermalUsage:
+              type: string
+              enum: ["Power Generation", "Direct Use", "Heat Pump", "Other"]
+              example: "Power Generation"
+        images:
+          type: array
+          items:
+            type: string
+          example: ["c7e8f12d3a9b6.webp", "d5f7e3a9c2b1.webp"]
+        previousUsers:
+          type: array
+          items:
+            type: string
+          description: History of previous inventory owners
+          example: ["50c21b4667d0d8992e610c81", "55f32c5778e1e9aa3f721d92"]
+    
+    Blog:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "60d21b4667d0d8992e610c85"
+        user:
+          type: string
+          example: "60d21b4667d0d8992e610c85"
+        blogTitle:
+          type: string
+          example: "Advances in Solar Technology"
+        blogSummary:
+          type: string
+          example: "An overview of the latest developments in solar panel efficiency."
+        blogContent:
+          type: string
+          example: "Solar technology has seen remarkable progress in the past decade..."
+        images:
+          type: array
+          items:
+            type: string
+          example: ["a1b2c3d4e5f6.webp", "f6e5d4c3b2a1.webp"]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    
+    Transfer:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: "60d21b4667d0d8992e610c85"
+        inventoryId:
+          type: string
+          example: "60d21b4667d0d8992e610c85"
+        previousInstallerId:
+          type: string
+          example: "60d21b4667d0d8992e610c85"
+        newInstallerId:
+          type: string
+          example: "70e32c5778e1e9aa3f721d96"
+        status:
+          type: string
+          enum: ["pending", "approved", "rejected"]
+          example: "pending"
+        reason:
+          type: string
+          example: "Customer requested change of installer"
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "transfer_request.pdf"
+              type:
+                type: string
+                example: "application/pdf"
+              size:
+                type: number
+                example: 245678
+        approvedBy:
+          type: string
+          example: "80f43d6889f2fabb4g832e07"
+        approvalDate:
+          type: string
+          format: date-time
+        notes:
+          type: string
+          example: "Approved after verification of documents"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Not authorized"
+    
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, degraded, down]
+          example: "ok"
+        version:
+          type: string
+          example: "1.1.0"
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-08-05T03:44:37Z"
+        environment:
+          type: string
+          enum: [development, staging, production]
+          example: "production"
+        uptime:
+          type: number
+          description: Server uptime in seconds
+          example: 1209600
+
+    ReadinessStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, degraded]
+          example: ok
+        process:
+          type: object
+          properties:
+            pid:
+              type: integer
+              example: 12345
+            uptime:
+              type: number
+              example: 3600
+            rss:
+              type: integer
+              example: 73400320
+            heapUsed:
+              type: integer
+              example: 26214400
+            eventLoopLagMs:
+              type: string
+              example: "2.15"
+            node:
+              type: string
+              example: "v18.20.3"
+        db:
+          type: object
+          properties:
+            connected:
+              type: boolean
+              example: true
+            ping:
+              type: boolean
+              example: true
+        build:
+          type: object
+          properties:
+            version:
+              type: string
+              example: "1.2.0"
+            commit:
+              type: string
+              example: "abc1234"
+            env:
+              type: string
+              enum: [development, staging, production]
+              example: production
+
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of items
+          example: 237
+        page:
+          type: integer
+          description: Current page number
+          example: 2
+        limit:
+          type: integer
+          description: Items per page
+          example: 100
+        totalPages:
+          type: integer
+          description: Total number of pages
+          example: 3
+
+paths:
+  # System endpoints
+  /health:
+    get:
+      summary: API health check (deprecated)
+      description: Deprecated. Use /readyz or /healthz instead.
+      deprecated: true
+      tags:
+        - System
+      responses:
+        '200':
+          description: Health OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+        '503':
+          description: Health degraded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+
+  /livez:
+    get:
+      summary: Liveness probe
+      description: Returns 200 if the process is up
+      tags:
+        - System
+      responses:
+        '200':
+          description: Alive
+    head:
+      summary: Liveness probe (HEAD)
+      tags:
+        - System
+      responses:
+        '200':
+          description: Alive
+
+  /readyz:
+    get:
+      summary: Readiness probe
+      description: Checks dependencies and readiness of the service
+      tags:
+        - System
+      responses:
+        '200':
+          description: Ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessStatus'
+        '503':
+          description: Degraded or not ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessStatus'
+    head:
+      summary: Readiness probe (HEAD)
+      tags:
+        - System
+      responses:
+        '200':
+          description: Ready
+        '503':
+          description: Degraded or not ready
+
+  /healthz:
+    get:
+      summary: Health check
+      description: Alias of /readyz; returns service readiness details
+      tags:
+        - System
+      responses:
+        '200':
+          description: Ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessStatus'
+        '503':
+          description: Degraded or not ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessStatus'
+
+  # Authentication endpoints
+  /auth:
+    post:
+      summary: Login user
+      description: Authenticates a user and returns access token
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                checkedTerms:
+                  type: boolean
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+        '400':
+          description: All fields are required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /auth/refresh:
+    get:
+      summary: Refresh access token
+      description: Get a new access token using refresh token stored in cookies
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: New access token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+        '401':
+          description: Unauthorized - no refresh token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden - invalid refresh token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /auth/logout:
+    post:
+      summary: Logout user
+      description: Clears the JWT cookie
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Cookie cleared
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Cookie cleared"
+        '204':
+          description: No cookie to clear
+  
+  /auth/verify:
+    post:
+      summary: Verify user password
+      description: Validates a user's password
+      tags:
+        - Authentication
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+              required:
+                - password
+      responses:
+        '200':
+          description: Password verified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Password verified successfully"
+        '400':
+          description: Password is required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Incorrect password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Users endpoints
+  /users:
+    get:
+      summary: Get all users
+      description: Retrieves a list of all users (without password)
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Encrypted users data string
+        '400':
+          description: No users found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    post:
+      summary: Create a new user
+      description: Creates a new user in the system
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                roles:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - username
+                - password
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "New user johndoe created"
+        '400':
+          description: Invalid data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Username already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    patch:
+      summary: Update a user
+      description: Updates an existing user's details
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                username:
+                  type: string
+                roles:
+                  type: array
+                  items:
+                    type: string
+                active:
+                  type: boolean
+                password:
+                  type: string
+                  description: New password (optional)
+                currPW:
+                  type: string
+                  description: Current password (required if password is being changed)
+                isAdmin:
+                  type: boolean
+                  description: Whether the requester is an admin
+                isManager:
+                  type: boolean
+                  description: Whether the requester is a manager
+              required:
+                - id
+                - username
+                - roles
+                - active
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "johndoe updated"
+        '400':
+          description: Invalid data or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - password issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Username already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    delete:
+      summary: Delete a user
+      description: Removes a user from the system
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+              required:
+                - id
+      responses:
+        '200':
+          description: User deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Username johndoe with ID 60d21b4667d0d8992e610c85 deleted"
+        '400':
+          description: User has assigned renewable energies or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Inventory endpoints
+  /inventories:
+    get:
+      summary: Get all inventories
+      description: Retrieves all inventory items with optional filter by solarSystemTypes
+      tags:
+        - Inventories
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: solarSystemTypes
+          schema:
+            type: string
+            enum: ["Off-grid", "Grid-tied", "Hybrid"]
+          description: Filter by solar system type
+      responses:
+        '200':
+          description: Encrypted list of inventories
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Encrypted inventories data string
+        '400':
+          description: No inventories found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    post:
+      summary: Create new inventory
+      description: Creates a new inventory item with geolocation-based duplicate detection
+      tags:
+        - Inventories
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: "Point"
+                user:
+                  type: string
+                coordinates:
+                  type: string
+                  description: JSON string or array
+                properties:
+                  type: string
+                  description: JSON object as string
+                assessment:
+                  type: string
+                  description: JSON object as string
+                forceCreate:
+                  type: boolean
+                  description: Override duplicate detection
+                myUploads:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+              required:
+                - type
+                - user
+                - coordinates
+                - properties
+      responses:
+        '201':
+          description: Inventory created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "New Technical assessment created"
+        '400':
+          description: Invalid data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Potential duplicate detected
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Potential duplicate detected"
+                  duplicates:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Inventory'
+    
+    patch:
+      summary: Update inventory
+      description: Updates an existing inventory item
+      tags:
+        - Inventories
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+                  example: "Point"
+                user:
+                  type: string
+                coordinates:
+                  type: string
+                  description: JSON string or array
+                properties:
+                  type: string
+                  description: JSON object as string
+                assessment:
+                  type: string
+                  description: JSON object as string
+                forceUpdate:
+                  type: boolean
+                  description: Override duplicate detection
+                myUploads:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+              required:
+                - id
+                - type
+                - user
+                - coordinates
+                - properties
+      responses:
+        '200':
+          description: Inventory updated
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "'Point' updated"
+        '400':
+          description: Invalid data or inventory not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Potential duplicate detected
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Potential duplicate detected"
+                  duplicates:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Inventory'
+    
+    put:
+      summary: Delete image from inventory
+      description: Removes a specific image from an inventory item
+      tags:
+        - Inventories
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                images:
+                  type: number
+                  description: Index of image to delete
+              required:
+                - id
+                - images
+      responses:
+        '200':
+          description: Image deleted from inventory
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "'Point' updated"
+    
+    delete:
+      summary: Delete inventory
+      description: Removes an inventory item from the system
+      tags:
+        - Inventories
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - id
+      responses:
+        '200':
+          description: Inventory deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Inventory deleted"
+        '400':
+          description: Invalid ID or inventory not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /inventory-list:
+    get:
+      summary: Get paginated inventory list
+      description: Returns a paginated list of inventories with filtering options
+      tags:
+        - Inventories
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Page number
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 100
+          description: Items per page
+        - in: query
+          name: username
+          schema:
+            type: string
+          description: Filter by username (for non-admin users)
+        - in: query
+          name: isAdmin
+          schema:
+            type: string
+            enum: ["true", "false"]
+            default: "false"
+          description: Whether to apply username filter
+      responses:
+        '200':
+          description: Paginated inventory list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Inventory'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Blog endpoints
+  /blogs:
+    get:
+      summary: Get all blogs
+      description: Retrieves all blog posts
+      tags:
+        - Blogs
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of blog posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blog'
+        '400':
+          description: No blogs found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    post:
+      summary: Create new blog
+      description: Creates a new blog post with images
+      tags:
+        - Blogs
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                blogTitle:
+                  type: string
+                blogSummary:
+                  type: string
+                blogContent:
+                  type: string
+                myUploads:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+              required:
+                - user
+                - blogTitle
+                - blogSummary
+                - blogContent
+      responses:
+        '201':
+          description: Blog created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "New Technical blogContent created"
+        '400':
+          description: Invalid data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    patch:
+      summary: Update blog
+      description: Updates an existing blog post
+      tags:
+        - Blogs
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                user:
+                  type: string
+                blogTitle:
+                  type: string
+                blogSummary:
+                  type: string
+                blogContent:
+                  type: string
+                myUploads:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+              required:
+                - id
+                - user
+                - blogTitle
+                - blogSummary
+                - blogContent
+      responses:
+        '200':
+          description: Blog updated
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "'undefined' updated"
+        '400':
+          description: Invalid data or blog not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    put:
+      summary: Delete image from blog
+      description: Removes a specific image from a blog post
+      tags:
+        - Blogs
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                images:
+                  type: number
+                  description: Index of image to delete
+              required:
+                - id
+                - images
+      responses:
+        '200':
+          description: Image deleted from blog
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "'undefined' updated"
+    
+    delete:
+      summary: Delete blog
+      description: Removes a blog post from the system
+      tags:
+        - Blogs
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+              required:
+                - id
+      responses:
+        '200':
+          description: Blog deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Blog 'undefined' with ID 60d21b4667d0d8992e610c85 deleted"
+        '400':
+          description: Invalid ID or blog not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /publicBlogs:
+    get:
+      summary: Get all public blogs
+      description: Retrieves all blog posts for public viewing (encoded)
+      tags:
+        - Blogs
+      responses:
+        '200':
+          description: Encoded list of blog posts
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Character code array as string
+        '400':
+          description: No blogs found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /publicInventories:
+    get:
+      summary: Get all public inventories
+      description: Retrieves all inventory items for public viewing (encrypted)
+      tags:
+        - Inventories
+      responses:
+        '200':
+          description: Encrypted list of inventories
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Encrypted inventories data
+        '400':
+          description: No inventories found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Transfer endpoints
+  /transfers:
+    get:
+      summary: Get all transfers
+      description: Retrieves all ownership transfer requests (Admin/Manager only)
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Page number
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Items per page
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: ["pending", "approved", "rejected"]
+          description: Filter by status
+      responses:
+        '200':
+          description: List of transfers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: '#/components/schemas/Transfer'
+                        - type: object
+                          properties:
+                            documents:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  type:
+                                    type: string
+                                  size:
+                                    type: number
+                                  hasData:
+                                    type: boolean
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    post:
+      summary: Create transfer request
+      description: Creates a new ownership transfer request
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                inventoryId:
+                  type: string
+                newInstallerId:
+                  type: string
+                reason:
+                  type: string
+                documents:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+              required:
+                - inventoryId
+                - newInstallerId
+                - reason
+                - documents
+      responses:
+        '201':
+          description: Transfer request created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Transfer request created successfully"
+                  transferId:
+                    type: string
+                    example: "60d21b4667d0d8992e610c85"
+        '400':
+          description: Invalid data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Inventory or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /transfers/user:
+    get:
+      summary: Get user's transfers
+      description: Retrieves transfers where the current user is involved
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of user's transfers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: '#/components/schemas/Transfer'
+                        - type: object
+                          properties:
+                            documents:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  type:
+                                    type: string
+                                  size:
+                                    type: number
+                                  hasData:
+                                    type: boolean
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '401':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /transfers/check/{inventoryId}:
+    get:
+      summary: Check for existing transfers
+      description: Checks if there are pending transfers for an inventory
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: inventoryId
+          required: true
+          schema:
+            type: string
+          description: ID of inventory to check
+      responses:
+        '200':
+          description: List of pending transfers (empty if none)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/components/schemas/Transfer'
+                    - type: object
+                      properties:
+                        newInstallerName:
+                          type: string
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /transfers/user/{userId}:
+    get:
+      summary: Get user's transfers by ID
+      description: Retrieves transfers for a specific user (Admin/Manager only)
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: User ID to get transfers for
+      responses:
+        '200':
+          description: List of user's transfers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: '#/components/schemas/Transfer'
+                        - type: object
+                          properties:
+                            documents:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  type:
+                                    type: string
+                                  size:
+                                    type: number
+                                  hasData:
+                                    type: boolean
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /transfers/{id}:
+    get:
+      summary: Get transfer by ID
+      description: Retrieves a specific transfer request
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Transfer ID
+      responses:
+        '200':
+          description: Transfer details
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Transfer'
+                  - type: object
+                    properties:
+                      documents:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            type:
+                              type: string
+                            size:
+                              type: number
+                            hasData:
+                              type: boolean
+        '401':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Transfer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    delete:
+      summary: Delete transfer
+      description: Removes a transfer request (Admin only)
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Transfer ID
+      responses:
+        '200':
+          description: Transfer deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Transfer deleted successfully"
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Transfer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /transfers/{id}/approve:
+    patch:
+      summary: Approve transfer
+      description: Approves a transfer request and updates inventory ownership (Admin/Manager only)
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Transfer ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notes:
+                  type: string
+                  description: Approval notes
+      responses:
+        '200':
+          description: Transfer approved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Transfer approved successfully"
+                  transfer:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      status:
+                        type: string
+                        example: "approved"
+                      approvalDate:
+                        type: string
+                        format: date-time
+        '400':
+          description: Transfer already processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Transfer or inventory not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /transfers/{id}/reject:
+    patch:
+      summary: Reject transfer
+      description: Rejects a transfer request (Admin/Manager only)
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Transfer ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                notes:
+                  type: string
+                  description: Rejection reason
+      responses:
+        '200':
+          description: Transfer rejected
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Transfer rejected successfully"
+                  transfer:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      status:
+                        type: string
+                        example: "rejected"
+                      approvalDate:
+                        type: string
+                        format: date-time
+        '400':
+          description: Transfer already processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Transfer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /transfers/{id}/documents/{docId}:
+    get:
+      summary: Get transfer document
+      description: Downloads a specific document from a transfer request
+      tags:
+        - Transfers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Transfer ID
+        - in: path
+          name: docId
+          required: true
+          schema:
+            type: string
+          description: Document index
+      responses:
+        '200':
+          description: Document file (binary)
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            application/msword:
+              schema:
+                type: string
+                format: binary
+            application/vnd.openxmlformats-officedocument.wordprocessingml.document:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Transfer or document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Image endpoints
+  /image/{id}:
+    get:
+      summary: Get image by ID
+      description: Retrieves an image from GridFS storage
+      tags:
+        - Images
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Image filename
+      responses:
+        '200':
+          description: Image file
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/webp:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Image not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /image/mobile/{id}:
+    get:
+      summary: Get mobile app file
+      description: Downloads a mobile application file
+      tags:
+        - Images
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: File ID
+      responses:
+        '200':
+          description: Mobile application file
+          content:
+            application/vnd.android.package-archive:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /image/del/{id}:
+    delete:
+      summary: Delete image
+      description: Removes an image from storage
+      tags:
+        - Images
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Image ID
+      responses:
+        '200':
+          description: Image deleted
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Image not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+security:
+  - bearerAuth: []

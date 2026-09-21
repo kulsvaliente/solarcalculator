@@ -1,0 +1,1932 @@
+[{
+  "_id": {
+    "$oid": "68b009ae80c03f4ebe200aca"
+  },
+  "user": "673e96e4217d857c1e9751c4",
+  "type": "Point",
+  "coordinates": [
+    120.5285529,
+    15.357025
+  ],
+  "properties": {
+    "ownerName": "Jerry A. Osiana",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Self-Established",
+    "isNetMetered": "Yes",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III ",
+      "province": "Tarlac ",
+      "city": "Capas ",
+      "brgy": "Cristo Rey"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "3300",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Standalone"
+  },
+  "images": [
+    "f187b31410e46bbf50d316c5c3654ee4.webp",
+    "36638602ae299a280d36985ab5140887.webp",
+    "ee41289462e822e6df76f23be6d4d537.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T07:47:58.195Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T07:47:58.195Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b009b580c03f4ebe200acb"
+  },
+  "user": "673e96e4217d857c1e9751c4",
+  "type": "Point",
+  "coordinates": [
+    120.5367189,
+    15.3644603
+  ],
+  "properties": {
+    "ownerName": "Benjamin Hao",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "Yes",
+    "nonCommercialREClassification": "Residential",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III",
+      "province": "Tarlac ",
+      "city": "Capas",
+      "brgy": "Cristo Rey "
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "11000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Standalone"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2025-08-28T07:48:05.543Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T07:48:05.543Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b009b780c03f4ebe200acc"
+  },
+  "user": "673e96e4217d857c1e9751c4",
+  "type": "Point",
+  "coordinates": [
+    120.5890326,
+    15.3335263
+  ],
+  "properties": {
+    "ownerName": "Adenn L. Sigua",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2021",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "Yes",
+    "nonCommercialREClassification": "Commercial Establishment",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III ",
+      "province": "Tarlac ",
+      "city": "Capas",
+      "brgy": "Sto. Rosario"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "8000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Standalone"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2025-08-28T07:48:07.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T07:48:07.845Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b009da80c03f4ebe200ad1"
+  },
+  "user": "673e96e4217d857c1e9751c4",
+  "type": "Point",
+  "coordinates": [
+    120.5822105,
+    15.3171777
+  ],
+  "properties": {
+    "ownerName": "N/A",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Self-Established",
+    "isNetMetered": "Yes",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III ",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Cut Cut I"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "6000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Hybrid"
+  },
+  "images": [
+    "c7c8582f555f6b493ffe93e0151c5b97.webp",
+    "1accec2d7e3691c073bd9e3ff02ff0b8.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T07:48:42.418Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T07:48:42.418Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b009f180c03f4ebe200ad6"
+  },
+  "user": "673e96e4217d857c1e9751c4",
+  "type": "Point",
+  "coordinates": [
+    120.5827767,
+    15.3186376
+  ],
+  "properties": {
+    "ownerName": "Marvin M. Martin",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Self-Established",
+    "isNetMetered": "Yes",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III ",
+      "province": "Tarlac ",
+      "city": "Capas ",
+      "brgy": "Cut Cut I"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "6000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [
+    "d980af8b6278ec07eca68e39672a189c.webp",
+    "eecc225ab9a92f0ac0ad69cf10a69a14.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T07:49:05.885Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T07:49:05.885Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c4080c03f4ebe200ad7"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5800468,
+    15.3473297
+  ],
+  "properties": {
+    "ownerName": "N/A",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2022",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "Yes",
+    "nonCommercialREClassification": "Residential",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sto. Rosario"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "4000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2025-08-28T09:07:12.166Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:07:12.166Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c5380c03f4ebe200ad8"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.577799,
+    15.309959
+  ],
+  "properties": {
+    "ownerName": "Casanova Inn",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Cut cut 1"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "20000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2025-08-28T09:07:31.099Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:07:31.099Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c6380c03f4ebe200adf"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.4536325,
+    15.3492695
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sta. Juliana"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1,
+        "capacity": "30",
+        "pcs": "108"
+      }
+    ]
+  },
+  "images": [
+    "6320171eb47417859a9ed612e0749dff.webp",
+    "f92b4cc9256c778fef8c650f5bcb4477.webp",
+    "c07e5a2942d0ac4eadeb5ee1e3620b20.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:07:47.251Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:07:47.251Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c6b80c03f4ebe200ae4"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.4791483,
+    15.3653459
+  ],
+  "properties": {
+    "ownerName": "LGU Capas, Brgy. O'Donnell",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "O'Donnell "
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756363863216,
+        "capacity": "30",
+        "pcs": "55"
+      }
+    ]
+  },
+  "images": [
+    "7c9ac4894abd77e85423ae422d56685f.webp",
+    "edd339498b063d7078f0b1e560d21255.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:07:55.205Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:07:55.205Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c6f80c03f4ebe200ae9"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.4898615,
+    15.3685015
+  ],
+  "properties": {
+    "ownerName": "LGU Capas, Bangut Bridge",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sta. Lucia"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756363948649,
+        "capacity": "100",
+        "pcs": "34"
+      }
+    ]
+  },
+  "images": [
+    "ccb7f3d3aa217117dd0a4676d8a530d3.webp",
+    "f0b8094c21a16197398c69166a7cab8b.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:07:59.284Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:07:59.284Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c7580c03f4ebe200aee"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5170432,
+    15.3623493
+  ],
+  "properties": {
+    "ownerName": "LGU Capas, Brgy. Sta. Lucia",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sta. Lucia"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756364260909,
+        "capacity": "30",
+        "pcs": "25"
+      }
+    ]
+  },
+  "images": [
+    "5f5ef0da9702af2a325e11c72e1509f9.webp",
+    "75ae38f0139ab901251d64d92abdc37e.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:05.600Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:05.600Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c7880c03f4ebe200af1"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5332538,
+    15.3527385
+  ],
+  "properties": {
+    "ownerName": "LGU Capas, Brgy. Cristo Rey",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2025",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Cristo Rey"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756364484911,
+        "capacity": "100",
+        "pcs": "52"
+      }
+    ]
+  },
+  "images": [
+    "67132cb9147bce5380195e6791350a96.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:08.899Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:08.899Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c7b80c03f4ebe200af4"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5586473,
+    15.3515905
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2025",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Aranguren"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756364607734,
+        "capacity": "100",
+        "pcs": "217"
+      }
+    ]
+  },
+  "images": [
+    "8ff21b6b34fa526b1b8a8503a364f4f0.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:11.955Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:11.955Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c7e80c03f4ebe200af7"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5711968,
+    15.3502409
+  ],
+  "properties": {
+    "ownerName": "LGU Capas, Aranguren Bridge",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Aranguren"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756364739191,
+        "capacity": "100",
+        "pcs": "12"
+      }
+    ]
+  },
+  "images": [
+    "09b1f55c677594e112f008dfc2acc4e6.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:14.874Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:14.874Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c8280c03f4ebe200afa"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5823089,
+    15.3442472
+  ],
+  "properties": {
+    "ownerName": "LGU Capas, Sto. Rosario",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sto. Rosario"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756364979915,
+        "capacity": "100",
+        "pcs": "33"
+      }
+    ]
+  },
+  "images": [
+    "65f8debe7952dfc8bfdaea9bb10e91b9.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:18.058Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:18.058Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c8580c03f4ebe200afd"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5892839,
+    15.3341637
+  ],
+  "properties": {
+    "ownerName": "LGU Capas, Brgy. Sto. Domingo",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sto. Domingo"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756365143524,
+        "capacity": "20",
+        "pcs": "9"
+      }
+    ]
+  },
+  "images": [
+    "6f2c284beefee24c79901d0ed9c1381f.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:21.087Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:21.087Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c8880c03f4ebe200b00"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5905141,
+    15.3350155
+  ],
+  "properties": {
+    "ownerName": "House No. 849",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Self-Established",
+    "isNetMetered": "Yes",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sto. Domingo "
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "16000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [
+    "e79b0c28408b69c9416451acd882abd8.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:24.182Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:24.182Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c8c80c03f4ebe200b05"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5932611,
+    15.3496871
+  ],
+  "properties": {
+    "ownerName": "LGU Capas, Maharlika Highway",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Brgy. Sto. Domingo II"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756366194957,
+        "capacity": "20",
+        "pcs": "47"
+      }
+    ]
+  },
+  "images": [
+    "66fec4cbcdce7dff6ef479300af3aa10.webp",
+    "e7fa7c9384fd534f9867ac2291b43bd9.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:28.738Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:28.738Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c8f80c03f4ebe200b06"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5910664,
+    15.3654132
+  ],
+  "properties": {
+    "ownerName": "RMCJ Swimming Pool and Construction Services",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Brgy. Sto. Domingo II"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "11000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:31.617Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:31.617Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c9280c03f4ebe200b09"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5899899,
+    15.368743
+  ],
+  "properties": {
+    "ownerName": "N/A",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2022",
+    "acquisition": "Self-Established",
+    "isNetMetered": "Yes",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Brgy. Dolores"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "9000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [
+    "618770dbbf3ccbd3e014b2e320e4b436.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:34.988Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:34.988Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c9480c03f4ebe200b0a"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5996352,
+    15.4226321
+  ],
+  "properties": {
+    "ownerName": "BCO Tarlac",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Self-Established",
+    "isNetMetered": "Yes",
+    "hasDER": "No",
+    "ownUse": "Yes",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Tarlac City",
+      "brgy": "Brgy. Sapang Tagalog"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "15000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:36.759Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:36.759Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c9880c03f4ebe200b0f"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5997021,
+    15.4206835
+  ],
+  "properties": {
+    "ownerName": "LGU Tarlac City",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Tarlac City",
+      "brgy": "Brgy. Sapang Tagalog"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756368027903,
+        "capacity": "100",
+        "pcs": "40"
+      }
+    ]
+  },
+  "images": [
+    "b15d9bf98863852617b34b4c44253805.webp",
+    "e605fe8d3ac1954f3314f863ceee7920.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:40.850Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:40.850Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c9c80c03f4ebe200b14"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.6005127,
+    15.4017154
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2025",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Estrada"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756368335920,
+        "capacity": "100",
+        "pcs": "129"
+      }
+    ]
+  },
+  "images": [
+    "fb49769203b1f40b7945b8af95e4e13a.webp",
+    "7dbb9d7a5d7cfa4a1cef3b076e57b3d0.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:44.597Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:44.597Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01c9f80c03f4ebe200b17"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5940074,
+    15.3805203
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Brgy. Talaga"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756368753488,
+        "capacity": "80",
+        "pcs": "50"
+      }
+    ]
+  },
+  "images": [
+    "96eeddae4bd0358d148cb35d4cd5d1f0.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:47.521Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:47.521Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01ca280c03f4ebe200b1a"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5906761,
+    15.3685899
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Talaga"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756368899859,
+        "capacity": "80",
+        "pcs": "100"
+      }
+    ]
+  },
+  "images": [
+    "121ce6a61964c045121d874c48585044.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:50.338Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:50.338Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01ca580c03f4ebe200b1d"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5923807,
+    15.3563882
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Dolores"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1,
+        "capacity": "50",
+        "pcs": "24"
+      }
+    ]
+  },
+  "images": [
+    "20242fe918e3a7ce0e1257e81a2328a7.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:53.117Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:53.117Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01ca780c03f4ebe200b20"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5920806,
+    15.3451274
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sto. Rosario"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756369247347,
+        "capacity": "80",
+        "pcs": "23"
+      }
+    ]
+  },
+  "images": [
+    "42c196953e3623d0a62b1da6367be40d.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:55.980Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:55.980Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01caa80c03f4ebe200b23"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5279719,
+    15.3553595
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Brgy. Cristo Rey"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756369435097,
+        "capacity": "50",
+        "pcs": "68"
+      }
+    ]
+  },
+  "images": [
+    "53b1c804e47708f6f65f809d0dec74d1.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:08:58.949Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:08:58.949Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01cae80c03f4ebe200b26"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.5054634,
+    15.3644513
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines ",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sta. Lucia"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756370275631,
+        "capacity": "50",
+        "pcs": "96"
+      }
+    ]
+  },
+  "images": [
+    "362fc108d0c8429aa52ece020161ccec.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:09:02.776Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:09:02.776Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b01cb280c03f4ebe200b29"
+  },
+  "user": "64181decefd37e9800b2cddb",
+  "type": "Point",
+  "coordinates": [
+    120.4723056,
+    15.363533
+  ],
+  "properties": {
+    "ownerName": "LGU Capas",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Awarded/Donation",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "O'Donnell "
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Solar Street Lights",
+    "solarStreetLights": [
+      {
+        "id": 1756370584112,
+        "capacity": "60",
+        "pcs": "20"
+      }
+    ]
+  },
+  "images": [
+    "412690f0f8b0f9d08910e108e9201f26.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-08-28T09:09:06.186Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-28T09:09:06.186Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4ebd980c03f4ebe200b2c"
+  },
+  "user": "673e8edb217d857c1e96a003",
+  "type": "Point",
+  "coordinates": [
+    120.5279556,
+    15.3590752
+  ],
+  "properties": {
+    "ownerName": "N/A",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2024",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "Yes",
+    "nonCommercialREClassification": "Residential",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Cristo Rey"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "20000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Standalone"
+  },
+  "images": [
+    "8afa848ff5b67e1f4fedf115b09008be.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-09-01T00:42:01.558Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-01T00:42:01.558Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4ec6b80c03f4ebe200b2f"
+  },
+  "user": "673e8edb217d857c1e96a003",
+  "type": "Point",
+  "coordinates": [
+    120.5686894,
+    15.3509583
+  ],
+  "properties": {
+    "ownerName": "Briones Residence",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Self-Established",
+    "isNetMetered": "Yes",
+    "hasDER": "No",
+    "ownUse": "No",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "O'Donnell"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "3000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [
+    "445ca31d1d2fd1128ced944927357ca0.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-09-01T00:44:27.528Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-01T00:44:27.528Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4ecfa80c03f4ebe200b32"
+  },
+  "user": "673e8edb217d857c1e96a003",
+  "type": "Point",
+  "coordinates": [
+    120.5890707,
+    15.3339638
+  ],
+  "properties": {
+    "ownerName": "N/A",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2023",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "Yes",
+    "nonCommercialREClassification": "Residential",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Sto. Rosario"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "10000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [
+    "bfdd960ca9a305316e85f74f4a079999.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-09-01T00:46:50.922Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-01T00:46:50.922Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4ed8e80c03f4ebe200b35"
+  },
+  "user": "673e8edb217d857c1e96a003",
+  "type": "Point",
+  "coordinates": [
+    120.5886924,
+    15.3230532
+  ],
+  "properties": {
+    "ownerName": "Wellspring High School",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2021",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "Yes",
+    "nonCommercialREClassification": "",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Cut cut 1"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "10000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Grid-tied"
+  },
+  "images": [
+    "dfda8be7ba32c032559e430ff990ed66.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-09-01T00:49:18.555Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-01T00:49:18.555Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68b4ee5f80c03f4ebe200b3a"
+  },
+  "user": "673e8edb217d857c1e96a003",
+  "type": "Point",
+  "coordinates": [
+    120.5828136,
+    15.3186348
+  ],
+  "properties": {
+    "ownerName": "Miriam Perez",
+    "reCat": "Solar Energy",
+    "reClass": "Non-Commercial",
+    "yearEst": "2022",
+    "acquisition": "Self-Established",
+    "isNetMetered": "No",
+    "hasDER": "No",
+    "ownUse": "Yes",
+    "nonCommercialREClassification": "Residential",
+    "fit": {
+      "eligible": false,
+      "phase": "Non-FIT",
+      "rate": "",
+      "fitRef": "",
+      "fitStatus": ""
+    },
+    "address": {
+      "country": "Philippines",
+      "region": "III",
+      "province": "Tarlac",
+      "city": "Capas",
+      "brgy": "Cut cut 1"
+    }
+  },
+  "assessment": {
+    "status": "Operational",
+    "remarks": "",
+    "solarUsage": "Power Generation",
+    "capacity": "1000",
+    "annualEnergyProduction": "",
+    "solarSystemTypes": "Standalone"
+  },
+  "images": [
+    "9b7e307c18c7b42abe2d14022cf73be9.webp",
+    "fe0be713728b3f350bb4d858f366f6dd.webp"
+  ],
+  "createdAt": {
+    "$date": "2025-09-01T00:52:47.998Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-01T00:52:47.998Z"
+  }
+}]

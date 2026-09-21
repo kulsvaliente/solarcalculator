@@ -1,0 +1,20 @@
+```yaml
+services:
+  frontend:
+    image: juliusrarogal/solarcalc-frontend:v1
+    container_name: solarcalc-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    image: juliusrarogal/solarcalc-backend:v1
+    container_name: solarcalc-backend
+    ports:
+      - "4001:4001"
+    env_file:
+      - ./my-express-web-server/.env
+    restart: unless-stopped
+```

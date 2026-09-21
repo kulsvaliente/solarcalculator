@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+  <w:body>
+    <!-- Title -->
+    <w:p>
+      <w:pPr>
+        <w:jc w:val="center"/>
+        <w:spacing w:before="0" w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="32"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>Renewable Energy Systems Report</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Subtitle -->
+    <w:p>
+      <w:pPr>
+        <w:jc w:val="center"/>
+        <w:spacing w:before="0" w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:sz w:val="20"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>System Installation Summary by Institution</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Date -->
+    <w:p>
+      <w:pPr>
+        <w:jc w:val="center"/>
+        <w:spacing w:before="0" w:after="360"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="999999"/>
+        </w:rPr>
+        <w:t>Report Generated: </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="999999"/>
+        </w:rPr>
+        <w:t xml:space="preserve">December 2024</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Executive Summary -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="120"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="24"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>Executive Summary</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="120"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>This report provides a comprehensive overview of renewable energy systems installed across four major institutions. The data shows a total of 1,172 renewable energy systems installed across all institutions, with varying installation patterns from 2023 to 2025.</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Key Statistics -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="120"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="24"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>Key Statistics</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• Total Systems Installed: 1,172</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• Number of Participating Institutions: 4</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• Installation Period: 2023-2025</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• Leading Institution: USTP (633 systems)</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Charts Section -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="240" w:after="120"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="24"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>Visual Analysis</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Chart 1: Total Systems by Institution -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>Chart 1: Total Systems by Institution</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>┌─────────────────────────────────────────────────────────────────────────────────────┐</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="0"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ USTP  ████████████████████████████████████████████████████████████████████████████ 633│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="0"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ MMSU  ████████████████████████████████████████████████████████████████████████     444│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="0"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ PSU   ████████████████████████████████████████████████████████████████              76│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ WMSU  ████████████████████████████████████████████████████████████                  19│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>└─────────────────────────────────────────────────────────────────────────────────────┘</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Chart 2: Systems by Year -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="120" w:after="80"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>Chart 2: Systems Installed by Year (All Institutions Combined)</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>┌─────────────────────────────────────────────────────────────────────────────────────┐</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="0"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ 2025  ████████████████████████████████████████████████████████████████████████████ 405│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="0"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ 2023  ████████████████████████████████████████████████████████████████████████████ 498│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ 2024  ████████████████████████████████████████████████████████████████████████████ 269│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>└─────────────────────────────────────────────────────────────────────────────────────┘</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Chart 3: Institution Comparison by Year -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="120" w:after="80"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>Chart 3: Institution Performance by Year</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>┌─────────────────────────────────────────────────────────────────────────────────────┐</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="0"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ MMSU  ████████████████████████████████████████████████████████████████████████████ 329│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="0"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ USTP  ████████████████████████████████████████████████████████████████████████████ 159│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="0"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ WMSU  ████████████████████████████████████████████████████████████                  10│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>│ PSU   ████████████████████████████████████████████████████████████                   0│</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="18"/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>└─────────────────────────────────────────────────────────────────────────────────────┘</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="16"/>
+          <w:i/>
+          <w:color w:val="666666"/>
+        </w:rPr>
+        <w:t>Note: Chart shows 2023 installations for comparison</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Detailed Breakdown -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="240" w:after="120"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="24"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>Detailed Institution Breakdown</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- MMSU Section -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="22"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>MMSU (Mariano Marcos State University)</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• Total Systems: 444</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2023: 329 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2024: 14 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="120"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2025: 101 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- WMSU Section -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="22"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>WMSU (Western Mindanao State University)</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• Total Systems: 19</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2023: 10 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2024: 0 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="120"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2025: 9 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- USTP Section -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="22"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>USTP (University of Science and Technology of Southern Philippines)</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• Total Systems: 633</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2023: 159 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2024: 207 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="120"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2025: 267 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- PSU Section -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="22"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>PSU (Palawan State University)</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• Total Systems: 76</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2023: 0 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2024: 48 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="120"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2025: 28 systems</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Analysis Section -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="240" w:after="120"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="24"/>
+          <w:color w:val="2E5BBA"/>
+        </w:rPr>
+        <w:t>Analysis and Insights</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• USTP leads in total installations with 633 systems (54% of total)</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• MMSU shows the most consistent installation pattern across all years</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• 2025 shows the highest projected installations with 405 total systems</w:t>
+      </w:r>
+    </w:p>
+
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="0" w:after="80"/>
+        <w:ind w:left="720"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="20"/>
+        </w:rPr>
+        <w:t>• PSU demonstrates strong growth starting in 2024</w:t>
+      </w:r>
+    </w:p>
+
+    <!-- Footer -->
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="360" w:after="0"/>
+        <w:jc w:val="center"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:sz w:val="16"/>
+          <w:color w:val="999999"/>
+        </w:rPr>
+        <w:t>Generated by ARECGIS System - December 2024</w:t>
+      </w:r>
+    </w:p>
+  </w:body>
+</w:document>
