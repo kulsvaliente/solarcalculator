@@ -5,7 +5,7 @@
 
 import { GRID_TIED, HYBRID, OFF_GRID } from '../constants/systemComparisonConstants';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://solarcalc-backend.nbericmmsu.com';
 
 /**
  * Fetch pricing data from the API

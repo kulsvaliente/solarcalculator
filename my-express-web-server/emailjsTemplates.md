@@ -167,10 +167,10 @@
 ### 2. **Update Environment Variables**
 Add these to your backend `.env` file:
 ```env
-EMAILJS_SERVICE_ID=***REMOVED***
-EMAILJS_TEMPLATE_ID=***REMOVED***
-EMAILJS_PUBLIC_KEY=***REMOVED***
-EMAILJS_USER_ID=***REMOVED***
+EMAILJS_SERVICE_ID=your_service_id_here
+EMAILJS_TEMPLATE_ID=your_template_id_here
+EMAILJS_PUBLIC_KEY=your_public_key_here
+EMAILJS_USER_ID=your_user_id_here
 ```
 
 ### 3. **Test the Integration**

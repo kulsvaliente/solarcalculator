@@ -126,7 +126,7 @@ const INPUT_DEFINITIONS = [
   { term: 'Azimuth (°)', desc: 'The direction the solar panels face, measured in degrees from true north. 180° is due south (ideal in the Philippines). Azimuth affects how much sunlight the panels receive throughout the day.' },
   { term: 'Solar Panel Size (kWp)', desc: 'The rated power output of a single solar panel, expressed in kilowatts peak. Common values range from 0.5 to 0.65 kWp.' },
   { term: 'Panel Efficiency', desc: 'The efficiency of a solar panel in converting sunlight to electricity. For example, 0.18 = 18% of the sunlight is converted.' },
-  { term: 'Overall Efficiency', desc: 'The total efficiency of the system, accounting for inverter losses, wiring, and shading. Typically around 0.75 (or 75%).' },
+  { term: 'Daytime Use Percentage', desc: 'The proportion of your total daily electricity consumption that occurs during peak sunlight hours (typically 8:00 AM to 5:00 PM) when solar panels are actively generating electricity.' },
   { term: 'Electricity Rate (₱/kWh)', desc: 'Your current electricity rate per kilowatt-hour. This is used to calculate potential savings.' },
   { term: 'Monthly Electric Bill (₱)', desc: 'Used in the Monthly Consumption procedure. Your bill amount for a given month — paired with that month’s rate, the calculator converts it into consumption automatically.' },
   { term: 'Monthly Consumption (kWh)', desc: 'Used in the Monthly Consumption procedure. The energy your household or facility uses in a month. Enter it directly, or let the calculator derive it from your bill and rate.' },
@@ -269,15 +269,16 @@ const LandingPage = () => {
   return (
     <Box
       sx={{
-        minHeight: 'calc(100vh - 64px)',
+        // Fills exactly what's left below the institutional strip (32px) + app bar (64px),
+        // with no page-level scroll — the whole landing page fits in one screen.
+        height: 'calc(100vh - 96px)',
+        overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
-        backgroundImage: 'url(/solar-rooftop-calculator-background.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
-        py: { xs: 6, md: 8 },
+        // No background of its own — the shared body background (same image, set in
+        // index.css) shows through instead. Keeping it there (outside the page-transition's
+        // transformed element) is what keeps it truly fixed instead of sliding with the page.
+        py: { xs: 1.5, md: 2 },
       }}
     >
       <Container maxWidth="md">
@@ -295,7 +296,7 @@ const LandingPage = () => {
               background: (theme) =>
                 `linear-gradient(90deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
               px: { xs: 3, sm: 5 },
-              py: { xs: 2, sm: 2.5 },
+              py: { xs: 1, sm: 1.25 },
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -305,31 +306,31 @@ const LandingPage = () => {
           </Box>
 
           {/* Welcome message */}
-          <Box sx={{ px: { xs: 3, sm: 5, md: 6 }, pt: { xs: 3, sm: 4 }, textAlign: 'center' }}>
+          <Box sx={{ px: { xs: 3, sm: 5, md: 6 }, pt: { xs: 1.5, sm: 2 }, textAlign: 'center' }}>
             <Typography
               variant="h5"
               fontWeight={700}
               color="primary.main"
-              sx={{ fontSize: { xs: '1.75rem', sm: '2.1rem' } }}
+              sx={{ fontSize: { xs: '1.4rem', sm: '1.7rem' } }}
             >
               Welcome to the Solar Rooftop Calculator
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mt: 0.75 }}>
+            <Typography variant="body1" color="text.secondary" sx={{ mt: 0.5 }}>
               Let's find out how much solar power your rooftop can generate.
             </Typography>
           </Box>
 
           {/* Two-column body: supporting copy on the left, heading + CTA on the right */}
-          <Box sx={{ px: { xs: 3, sm: 5, md: 6 }, py: { xs: 4, sm: 5 } }}>
-            <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
+          <Box sx={{ px: { xs: 3, sm: 5, md: 6 }, py: { xs: 2, sm: 2.5 } }}>
+            <Grid container spacing={{ xs: 2, md: 3 }} alignItems="center">
               <Grid item xs={12} sm={6}>
                 <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
-                  <Typography variant="body1" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary">
                     The Solar Rooftop Calculator is a dynamic and user-friendly tool that helps
                     homeowners, businesses, and institutions evaluate the potential of installing a
                     solar photovoltaic (PV) system on their rooftops.
                   </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                     Calculate from your <strong>rooftop area</strong> to see the capacity your roof
                     can accommodate, or from your <strong>monthly consumption</strong> to see the
                     system capacity you actually need — then compare the two to verify that your
@@ -340,7 +341,7 @@ const LandingPage = () => {
 
               <Grid item xs={12} sm={6}>
                 <Stack
-                  spacing={2.5}
+                  spacing={1.5}
                   alignItems={{ xs: 'center', sm: 'flex-start' }}
                   textAlign={{ xs: 'center', sm: 'left' }}
                   sx={{
@@ -353,7 +354,7 @@ const LandingPage = () => {
                     variant="h3"
                     fontWeight={800}
                     color="primary.main"
-                    sx={{ fontSize: { xs: '2rem', sm: '2.25rem', md: '2.5rem' }, lineHeight: 1.15 }}
+                    sx={{ fontSize: { xs: '1.6rem', sm: '1.8rem', md: '2rem' }, lineHeight: 1.15 }}
                   >
                     Start Calculating
                   </Typography>
@@ -363,7 +364,7 @@ const LandingPage = () => {
                     color="primary"
                     endIcon={<ArrowForwardIcon />}
                     onClick={handleStartCalculating}
-                    sx={{ px: 4, py: 1.25, borderRadius: 2 }}
+                    sx={{ px: 4, py: 1, borderRadius: 2 }}
                   >
                     Proceed
                   </Button>
@@ -371,7 +372,7 @@ const LandingPage = () => {
               </Grid>
             </Grid>
 
-            <Divider sx={{ my: { xs: 4, sm: 5 } }} />
+            <Divider sx={{ my: { xs: 2, sm: 2.5 } }} />
 
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
@@ -430,34 +431,41 @@ const LandingPage = () => {
 
       {/* Definition */}
       <InfoDialog open={openDialog === 'definition'} onClose={close} title="Definition of Inputs and Calculations">
-        <Typography variant="subtitle1" fontWeight={700} gutterBottom>
+        <Typography
+          variant="overline"
+          sx={{ color: 'primary.main', fontWeight: 700, letterSpacing: 1, display: 'block', mb: 1 }}
+        >
           Inputs
         </Typography>
-        <List disablePadding>
+        <List disablePadding sx={{ '& > li + li': { borderTop: '1px solid', borderColor: 'divider' } }}>
           {INPUT_DEFINITIONS.map((item) => (
-            <ListItem key={item.term} disableGutters sx={{ alignItems: 'flex-start', py: 0.75 }}>
+            <ListItem key={item.term} disableGutters sx={{ alignItems: 'flex-start', py: 1.5 }}>
               <ListItemText
                 primary={item.term}
                 secondary={item.desc}
-                primaryTypographyProps={{ fontWeight: 700 }}
+                primaryTypographyProps={{ fontWeight: 700, fontSize: '0.95rem', color: 'text.primary' }}
+                secondaryTypographyProps={{ sx: { mt: 0.4, lineHeight: 1.65 } }}
               />
             </ListItem>
           ))}
         </List>
 
-        <Divider sx={{ my: 2 }} />
+        <Divider sx={{ my: 3 }} />
 
-        <Typography variant="subtitle1" fontWeight={700} gutterBottom>
+        <Typography
+          variant="overline"
+          sx={{ color: 'primary.main', fontWeight: 700, letterSpacing: 1, display: 'block', mb: 1 }}
+        >
           Key Calculations Explained
-
         </Typography>
-        <List disablePadding>
+        <List disablePadding sx={{ '& > li + li': { borderTop: '1px solid', borderColor: 'divider' } }}>
           {CALCULATION_DEFINITIONS.map((item) => (
-            <ListItem key={item.term} disableGutters sx={{ alignItems: 'flex-start', py: 0.75 }}>
+            <ListItem key={item.term} disableGutters sx={{ alignItems: 'flex-start', py: 1.5 }}>
               <ListItemText
                 primary={item.term}
                 secondary={item.desc}
-                primaryTypographyProps={{ fontWeight: 700 }}
+                primaryTypographyProps={{ fontWeight: 700, fontSize: '0.95rem', color: 'text.primary' }}
+                secondaryTypographyProps={{ sx: { mt: 0.4, lineHeight: 1.65 } }}
               />
             </ListItem>
           ))}

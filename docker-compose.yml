@@ -1,7 +1,10 @@
-```yaml
 services:
   frontend:
-    image: juliusrarogal/solarcalc-frontend:v1
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_API_URL: ${REACT_APP_API_URL:-https://solarcalc-backend.nbericmmsu.com}
+    image: solarcalc-frontend:latest
     container_name: solarcalc-frontend
     ports:
       - "8080:80"
@@ -10,11 +13,12 @@ services:
     restart: unless-stopped
 
   backend:
-    image: juliusrarogal/solarcalc-backend:v1
+    build:
+      context: ./my-express-web-server
+    image: solarcalc-backend:latest
     container_name: solarcalc-backend
     ports:
       - "4001:4001"
     env_file:
       - ./my-express-web-server/.env
     restart: unless-stopped
-```

@@ -17,15 +17,16 @@ The Solar AI Chatbot provides intelligent assistance for solar energy calculatio
 3. Generate an API key from the dashboard
 
 ### 2. Environment Configuration
-Add your Groq API key to your environment variables:
+The Groq API key lives on the **backend** (`my-express-web-server`), not the frontend — the
+chatbot's requests are proxied through `POST /api/ai/chat` so the key never ships to the browser.
 
-**For development (.env.local):**
+**In `my-express-web-server/.env`:**
 ```bash
-REACT_APP_GROQ_API_KEY=***REMOVED***
+GROQ_API_KEY=your_groq_api_key_here
 ```
 
-**For production:**
-Set the environment variable in your deployment platform.
+The frontend needs no Groq-specific configuration — it just needs `REACT_APP_API_URL` pointed at
+the backend, same as every other feature.
 
 ### 3. No Additional Dependencies Required
 The chatbot uses direct API calls, so no additional packages need to be installed.
@@ -51,7 +52,7 @@ The chatbot automatically receives your current calculator inputs:
 
 ## API Model
 - **Model**: `llama-3.3-70b-versatile` (latest version)
-- **API**: Direct REST API calls to Groq
+- **API**: Frontend → backend's `POST /api/ai/chat` → Groq (backend holds the key)
 - **Temperature**: 0.7 (balanced creativity and accuracy)
 - **Max Tokens**: 1000 per response
 - **Specialization**: Philippines solar market and regulations
@@ -59,10 +60,9 @@ The chatbot automatically receives your current calculator inputs:
 ## Troubleshooting
 
 ### Common Issues
-1. **API Key Error**: Ensure `REACT_APP_GROQ_API_KEY` is set correctly
-2. **Network Error**: Check internet connection and API key validity
+1. **API Key Error**: Ensure `GROQ_API_KEY` is set correctly in `my-express-web-server/.env`
+2. **Network Error**: Check that the backend is running and `REACT_APP_API_URL` is correct
 3. **Rate Limiting**: Groq has rate limits; wait a moment and try again
-4. **CORS Error**: The API calls are made directly from the browser (this is normal)
 
 ### Error Messages
 - "I'm having trouble connecting" - API connection issue
@@ -89,6 +89,6 @@ Edit `SolarAIChatbot.jsx` and add new actions to the `quickActions` array:
 Update the system message in the `handleSendMessage` function to change the AI's behavior and expertise focus.
 
 ## Security Notes
-- API key is exposed in the frontend (this is normal for client-side AI integrations)
-- Consider implementing rate limiting on your backend if needed
-- Monitor API usage to stay within Groq's limits
+- The API key stays server-side (`my-express-web-server`) and is never sent to the browser.
+- `/api` is already rate-limited on the backend (`proxyLimiter` in `server.js`).
+- Monitor API usage to stay within Groq's limits.

@@ -1,10 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const ratingController = require('../controllers/solarCalculatorRatingController')
+const { forwardToArecgis } = require('../services/arecgisProxy')
 
-// Public: the calculator UI both submits ratings and displays the average-rating badge
+// Ratings ("evaluations") are forwarded to arecgis's own API so they land in the
+// arecgis admin account, even though this backend is otherwise standalone.
+const forward = forwardToArecgis('/solar-calculator-ratings')
+
 router.route('/')
-    .get(ratingController.getSolarCalculatorRatings)
-    .post(ratingController.submitSolarCalculatorRating)
+    .get(forward)
+    .post(forward)
+
+router.route('/:id')
+    .delete(forward)
 
 module.exports = router

@@ -15,8 +15,7 @@ import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import * as turf from '@turf/turf';
 import '../plugins/L.Graticule';
-
-const OPENCAGE_API_KEY = '***REMOVED***';
+import { reverseGeocode } from '../services/geocodingService';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -35,10 +34,7 @@ function SetMapRef({ mapRef }) {
 
 async function fetchLocationName(lat, lng, setLocationName) {
   try {
-    const res = await fetch(
-      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${OPENCAGE_API_KEY}`
-    );
-    const data = await res.json();
+    const data = await reverseGeocode(lat, lng);
     const name = data.results[0]?.formatted || 'Unknown location';
     setLocationName(name);
   } catch {

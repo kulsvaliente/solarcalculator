@@ -245,11 +245,11 @@ const SolarAIChatbot = ({ calculatorData, isOpen, onClose }) => {
       // Create context-aware prompt including extracted parameters
       const contextPrompt = createContextPrompt(text, calculatorData, parameterResults);
       
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      const apiBaseUrl = process.env.REACT_APP_API_URL || 'https://solarcalc-backend.nbericmmsu.com';
+      const response = await fetch(`${apiBaseUrl}/api/ai/chat`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.REACT_APP_GROQ_API_KEY}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: "llama-3.3-70b-versatile",

@@ -4,8 +4,7 @@
  * Applies 0.8 multiplier to solar irradiance for sun peak hours calculation
  */
 
-const NREL_API_KEY = '***REMOVED***';
-const NREL_BASE_URL = 'https://developer.nlr.gov/api/pvwatts/v8.json';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://solarcalc-backend.nbericmmsu.com';
 const SUN_PEAK_CACHE_VERSION = 'v4_default_tilt_18';
 
 /**
@@ -44,24 +43,23 @@ export const calculateSunPeakHours = async ({
       throw new Error('Longitude must be between -180 and 180');
     }
 
-    // Build API URL
-    const params = new URLSearchParams({
-      api_key: NREL_API_KEY,
-      lat: latitude.toString(),
-      lon: longitude.toString(),
-      system_capacity: systemCapacity.toString(),
-      azimuth: azimuth.toString(),
-      tilt: tilt.toString(),
-      array_type: arrayType.toString(),
-      module_type: moduleType.toString(),
-      losses: losses.toString()
+    // Fetch data from NREL PVWatts API, proxied through the standalone backend so the
+    // NREL key never ships to the browser.
+    const response = await fetch(`${API_BASE_URL}/api/irradiance`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        latitude,
+        longitude,
+        systemCapacity,
+        azimuth,
+        tilt,
+        arrayType,
+        moduleType,
+        losses
+      })
     });
 
-    const url = `${NREL_BASE_URL}?${params}`;
-
-    // Fetch data from NREL PVWatts API
-    const response = await fetch(url);
-    
     if (!response.ok) {
       throw new Error(`NREL API request failed: ${response.status} ${response.statusText}`);
     }

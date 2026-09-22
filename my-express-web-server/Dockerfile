@@ -1,5 +1,4 @@
 # Dockerfile for Node Express Backend
-# Matches backend.yaml and svc-backend.yaml configuration
 
 FROM node:20-alpine3.17
 
@@ -24,12 +23,11 @@ RUN addgroup -g 1001 -S nodejs && \
 RUN chown -R nodejs:nodejs /usr/src/app
 USER nodejs
 
-# Expose port 3001 (matches svc-backend.yaml targetPort)
-EXPOSE 3001
+# Port is set by PORT in .env (4001 by default) — keep this in sync if that changes.
+EXPOSE 4001
 
-# Health check endpoint (matches backend.yaml expectations)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget -qO- http://localhost:3001/livez || exit 1
+  CMD wget -qO- http://localhost:4001/livez || exit 1
 
 # Start the application
 CMD ["node", "server.js"]

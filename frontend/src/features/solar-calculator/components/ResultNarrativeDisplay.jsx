@@ -6,6 +6,7 @@ import {
   CardContent,
   CardActions,
   Collapse,
+  Divider,
   IconButton,
   Typography,
   Avatar
@@ -30,10 +31,27 @@ const pickScalar = (v) => {
   return asNumber(v);
 };
 
-/** Card for one System Comparison scenario — teaser line always visible, full paragraph
- *  revealed on expand. `expanded`/`onToggle` are shared across all three cards by the parent,
- *  so expanding one expands them all together. */
-const ScenarioCard = ({ name, color, teaser, body, expanded, onToggle }) => {
+/** One compact figure in the stat strip (Investment / Payback / ROI) — label on top, value below,
+ *  separated from its neighbors by a thin vertical divider. Mirrors the Investment/Payback/ROI
+ *  figures on the System Comparison tab's own cards so the two views never show different numbers. */
+const StatFigure = ({ label, value, color }) => (
+  <Box sx={{ flex: 1, textAlign: 'center', px: 1 }}>
+    <Typography
+      variant="caption"
+      sx={{ display: 'block', color: 'text.secondary', fontWeight: 600, letterSpacing: 0.3, textTransform: 'uppercase', fontSize: '0.68rem', mb: 0.4 }}
+    >
+      {label}
+    </Typography>
+    <Typography variant="subtitle2" sx={{ fontWeight: 700, color, lineHeight: 1.3 }}>
+      {value}
+    </Typography>
+  </Box>
+);
+
+/** Card for one System Comparison scenario — teaser + at-a-glance stat strip always visible,
+ *  full paragraph revealed on expand. `expanded`/`onToggle` are shared across all three cards by
+ *  the parent, so expanding one expands them all together. */
+const ScenarioCard = ({ name, color, teaser, stats, body, expanded, onToggle }) => {
   return (
     <Grid item xs={12} md={4}>
       <Card
@@ -48,20 +66,38 @@ const ScenarioCard = ({ name, color, teaser, body, expanded, onToggle }) => {
           '&:hover': { boxShadow: 4, transform: 'translateY(-2px)' }
         }}
       >
-        <CardContent sx={{ flexGrow: 1, pb: 1 }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 700, color, mb: 1 }}>
+        <CardContent sx={{ flexGrow: 1, p: 2.5, pb: 1.5 }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 700, color, mb: 1.25 }}>
             {name}
           </Typography>
-          <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
+          <Typography variant="body2" sx={{ lineHeight: 1.7, color: 'text.secondary', mb: 2 }}>
             {teaser}
           </Typography>
+
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'stretch',
+              bgcolor: 'action.hover',
+              borderRadius: 1.5,
+              py: 1.25
+            }}
+          >
+            <StatFigure label="Investment" value={stats.investment} color={color} />
+            <Divider orientation="vertical" flexItem sx={{ my: 0.25 }} />
+            <StatFigure label="Payback" value={stats.payback} color="text.primary" />
+            <Divider orientation="vertical" flexItem sx={{ my: 0.25 }} />
+            <StatFigure label="25-yr ROI" value={stats.roi} color="text.primary" />
+          </Box>
+
           <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <Typography variant="body2" sx={{ lineHeight: 1.7, mt: 1.5 }}>
+            <Divider sx={{ mt: 2, mb: 1.75 }} />
+            <Typography variant="body2" sx={{ lineHeight: 1.75 }}>
               {body}
             </Typography>
           </Collapse>
         </CardContent>
-        <CardActions sx={{ pt: 0 }}>
+        <CardActions sx={{ pt: 0, px: 2.5, pb: 1.5 }}>
           <IconButton
             onClick={onToggle}
             aria-expanded={expanded}
@@ -79,7 +115,7 @@ const ScenarioCard = ({ name, color, teaser, body, expanded, onToggle }) => {
           <Typography
             variant="caption"
             color="text.secondary"
-            sx={{ mr: 1, cursor: 'pointer' }}
+            sx={{ mr: 1, cursor: 'pointer', fontWeight: 600 }}
             onClick={onToggle}
           >
             {expanded ? 'Show less' : 'Read more'}
@@ -169,7 +205,10 @@ const ResultNarrativeDisplay = ({ parameters, results, comparisonBaseParameters,
       {/* System Comparison, in prose, one interactive card per configuration */}
       {(offgrid || gridtied || hybrid) && (
         <>
-          <Typography variant="subtitle1" sx={{ fontWeight: 600, color: 'text.secondary', mb: 2 }}>
+          <Typography
+            variant="overline"
+            sx={{ display: 'block', fontWeight: 700, color: 'text.secondary', letterSpacing: 0.6, mb: 2 }}
+          >
             How the three configurations compare
           </Typography>
           <Grid container spacing={2.5}>
@@ -180,13 +219,17 @@ const ResultNarrativeDisplay = ({ parameters, results, comparisonBaseParameters,
                 expanded={scenariosExpanded}
                 onToggle={() => setScenariosExpanded((prev) => !prev)}
                 teaser={`Sizes the same roof at about ${offgrid.capacity.toFixed(1)} kW (${offgrid.panelCount} panels), fully independent from the utility company.`}
+                stats={{
+                  investment: formatPesoRange(offgrid.cost.min, offgrid.cost.max),
+                  payback: `${offgrid.paybackPeriod} yrs`,
+                  roi: `${offgrid.roi}%`
+                }}
                 body={
                   <>
-                    It calls for an investment of roughly {formatPesoRange(offgrid.cost.min, offgrid.cost.max)}, mostly driven by battery size, and is estimated to pay
-                    for itself in about {offgrid.paybackPeriod} years with a 25-year ROI of {offgrid.roi}%. Its
-                    real value is full energy independence — it generates and stores its own electricity, which
-                    suits remote areas or locations with unstable grid power — though it does need a sizable
-                    battery bank and can be affected by prolonged cloudy weather.
+                    Its cost is driven mostly by battery size. Its real value is full energy independence — it
+                    generates and stores its own electricity, which suits remote areas or locations with
+                    unstable grid power — though it does need a sizable battery bank and can be affected by
+                    prolonged cloudy weather.
                   </>
                 }
               />
@@ -198,13 +241,16 @@ const ResultNarrativeDisplay = ({ parameters, results, comparisonBaseParameters,
                 expanded={scenariosExpanded}
                 onToggle={() => setScenariosExpanded((prev) => !prev)}
                 teaser={`The most affordable and simplest option, sizing the roof at about ${gridtied.capacity.toFixed(1)} kW (${gridtied.panelCount} panels).`}
+                stats={{
+                  investment: formatPesoRange(gridtied.cost.min, gridtied.cost.max),
+                  payback: `${gridtied.paybackPeriod} yrs`,
+                  roi: `${gridtied.roi}%`
+                }}
                 body={
                   <>
-                    It calls for an investment of roughly ₱{gridtied.cost.min.toLocaleString()} – ₱
-                    {gridtied.cost.max.toLocaleString()}, and is estimated to pay for itself in about{' '}
-                    {gridtied.paybackPeriod} years with a 25-year ROI of {gridtied.roi}%. It stays connected to
-                    the grid, reducing your bill without the added cost of batteries. The trade-off is that it
-                    shuts down during outages, offering no backup power when the grid goes down.
+                    It stays connected to the grid, reducing your bill without the added cost of batteries. The
+                    trade-off is that it shuts down during outages, offering no backup power when the grid goes
+                    down.
                   </>
                 }
               />
@@ -216,13 +262,16 @@ const ResultNarrativeDisplay = ({ parameters, results, comparisonBaseParameters,
                 expanded={scenariosExpanded}
                 onToggle={() => setScenariosExpanded((prev) => !prev)}
                 teaser={`Combines grid connection plus battery backup, sized at about ${hybrid.capacity.toFixed(1)} kW (${hybrid.panelCount} panels).`}
+                stats={{
+                  investment: formatPesoRange(hybrid.cost.min, hybrid.cost.max),
+                  payback: `${hybrid.paybackPeriod} yrs`,
+                  roi: `${hybrid.roi}%`
+                }}
                 body={
                   <>
-                    It calls for an investment of roughly ₱{hybrid.cost.min.toLocaleString()} – ₱
-                    {hybrid.cost.max.toLocaleString()} — the highest upfront cost of the three — and is
-                    estimated to pay for itself in about {hybrid.paybackPeriod} years with a 25-year ROI of{' '}
-                    {hybrid.roi}%. It keeps essential loads running during an outage, the best fit for anyone
-                    who wants savings on their bill and a safety net when the power goes out.
+                    This is the highest upfront cost of the three. It keeps essential loads running during an
+                    outage, the best fit for anyone who wants savings on their bill and a safety net when the
+                    power goes out.
                   </>
                 }
               />

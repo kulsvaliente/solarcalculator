@@ -985,12 +985,18 @@ const ScenarioSimulator = ({
     : getInvestmentProfile(selectedSystemType, baseCapacityForProfile, {
         annualProduction: simulatedResults?.annualProduction ?? baseResults?.annualProduction
       });
-  // Slider max = exact max investment from System Comparison; min = 75% below max (25% of max), floored to ₱50k min
+  // Slider max = exact max investment from System Comparison; the slider itself keeps a lower,
+  // wider min (25% of max) so it stays useful for exploring budgets below the System Comparison
+  // figure. The displayed "Investment: X - Y" text is a separate value below, pinned to System
+  // Comparison's own min so the two views always show the same headline number.
   const budgetSliderMax = selectedProfile.maxInvestment > 0 ? selectedProfile.maxInvestment : 50000;
   let budgetSliderMin = Math.max(50000, Math.round(budgetSliderMax * 0.25));
   if (budgetSliderMin >= budgetSliderMax) {
     budgetSliderMin = Math.max(50000, budgetSliderMax - 10000);
   }
+  const investmentDisplayMin =
+    selectedProfile.minInvestment > 0 ? selectedProfile.minInvestment : budgetSliderMin;
+  const investmentDisplayMax = budgetSliderMax;
   const budgetSliderStep = 10000;
   const budgetMidMark =
     selectedProfile.typicalInvestment >= budgetSliderMin && selectedProfile.typicalInvestment <= budgetSliderMax
@@ -1007,6 +1013,8 @@ const ScenarioSimulator = ({
   const budgetSliderMaxUi = budgetSliderMax;
   const budgetMidMarkUi = budgetMidMark;
   const budgetSliderMarksUi = budgetSliderMarks;
+  const investmentDisplayMinUi = investmentDisplayMin;
+  const investmentDisplayMaxUi = investmentDisplayMax;
 
   const currentSliderSnapshot = useMemo(
     () => ({
@@ -1745,7 +1753,7 @@ const ScenarioSimulator = ({
           {/* Budget Slider — range matches System Comparison investment min–max; default at max */}
           <Grid item xs={12} md={6}>
             <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600 }}>
-              Investment: {formatPesoRange(budgetSliderMinUi, budgetSliderMaxUi)}
+              Investment: {formatPesoRange(investmentDisplayMinUi, investmentDisplayMaxUi)}
             </Typography>
             <Slider
               value={simulatedBudget ?? budgetSliderMaxUi}

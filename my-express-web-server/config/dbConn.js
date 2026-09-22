@@ -4,7 +4,7 @@ const { baseLogger } = require('../middleware/logger')
 const connectDB = async () => {
     const uri = process.env.DATABASE_URI
     if (!uri || uri.trim() === '') {
-        baseLogger.fatal('DATABASE_URI is missing in .env. Add: DATABASE_URI=mongodb://***REDACTED***:***REDACTED***@cluster.mongodb.net/YourDbName?retryWrites=true&w=majority')
+        baseLogger.fatal('DATABASE_URI is missing in .env. Add: DATABASE_URI=mongodb+srv://user:pass@cluster.mongodb.net/YourDbName?retryWrites=true&w=majority')
         process.exit(1)
     }
 

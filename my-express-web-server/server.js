@@ -28,11 +28,16 @@ connectDB()
 // Assert critical environment variables in production
 const validateEnv = () => {
     if (process.env.NODE_ENV !== 'production') return
-    const required = ['ACCESS_TOKEN_SECRET', 'REFRESH_TOKEN_SECRET', 'SECRET_KEY', 'ALLOWED_ORIGINS']
-    const missing = required.filter(k => !process.env[k] || String(process.env[k]).length < 16)
+    const required = ['SECRET_KEY', 'ALLOWED_ORIGINS', 'DATABASE_URI', 'ARECGIS_API_URL']
+    const missing = required.filter(k => !process.env[k] || String(process.env[k]).length < 8)
     if (missing.length) {
         baseLogger.fatal({ missing }, 'Missing or weak required environment variables')
         process.exit(1)
+    }
+    const proxyKeys = ['OPENCAGE_API_KEY', 'GROQ_API_KEY', 'NREL_API_KEY']
+    const missingProxyKeys = proxyKeys.filter(k => !process.env[k])
+    if (missingProxyKeys.length) {
+        baseLogger.warn({ missingProxyKeys }, 'Third-party proxy keys not configured — those features will return 502')
     }
 }
 validateEnv()
@@ -87,6 +92,17 @@ app.use(['/solar-calculator-activity-logs', '/solar-calculator-ratings'], (req, 
     next()
 })
 
+// Rate limit the third-party proxy endpoints (geo/AI/irradiance) — they fire on normal map
+// interaction, not just writes, so this is more generous than the ratings/logs write limiter,
+// but still protects the underlying API keys from abuse.
+const proxyLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 600,
+    standardHeaders: true,
+    legacyHeaders: false,
+})
+app.use('/api', proxyLimiter)
+
 // Set up Swagger documentation (restrict in production)
 if (process.env.NODE_ENV !== 'production') {
     setupSwagger(app)
@@ -98,6 +114,7 @@ app.use('/settings', require('./routes/settingsRoutes'))
 app.use('/pricing', require('./routes/pricingRoutes'))
 app.use('/solar-calculator-activity-logs', require('./routes/solarCalculatorActivityLogRoutes'))
 app.use('/solar-calculator-ratings', require('./routes/solarCalculatorRatingRoutes'))
+app.use('/api', require('./routes/proxyRoutes'))
 
 // Liveness
 app.get('/livez', (req, res) => res.sendStatus(200))

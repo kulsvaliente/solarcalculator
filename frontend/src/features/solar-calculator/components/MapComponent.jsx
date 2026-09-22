@@ -1,5 +1,6 @@
 // src/pages/MapComponent.jsx
 import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   CssBaseline, Box, Fab, Drawer, IconButton, Typography,
   AppBar, Toolbar, Divider, TextField, Stack, Button,
@@ -8,6 +9,7 @@ import {
   Snackbar, Alert, Tooltip, Tabs, Tab, Slider, Rating
 } from '@mui/material';
 import { MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
 import ClearIcon from '@mui/icons-material/Clear';
 import TravelExploreRoundedIcon from '@mui/icons-material/TravelExploreRounded';
@@ -50,8 +52,7 @@ import { getRecommendedScenarioSystemType } from '../utils/systemComparisonDefau
 import { getSunPeakHours } from '../services/solarIrradianceService';
 import { calculateROI } from '../services/pricingService';
 import { estimateAreaForTargetCapacity, calculateTechnicalCapacity } from '../utils/roofAreaEstimator';
-
-const OPENCAGE_API_KEY = '***REMOVED***';
+import { reverseGeocode } from '../services/geocodingService';
 
 /** What-If / ScenarioSimulator localStorage keys — cleared when main Calculate runs so presets reset to current inputs */
 const SCENARIO_LS_KEYS_RESET_ON_CALCULATE = [
@@ -261,6 +262,7 @@ const getAzimuthDirection = (angle) => {
 
 export default function MapComponent() {
   const mapRef = useRef(null);
+  const navigate = useNavigate();
 
   const { drawerOpen, setDrawerOpen } = useCalculatorUI();
   const [popupOpen, setPopupOpen] = useState(false);
@@ -277,7 +279,13 @@ export default function MapComponent() {
   // it from the monthly electricity usage table. The choice is made in a pop-up selector
   // that opens on arrival, and can be changed any time from the input card header.
   const [calculationMode, setCalculationMode] = useState('rooftop');
-  const [procedureDialogOpen, setProcedureDialogOpen] = useState(true);
+  // Stays closed until the calculator's loading splash (App.js, CALC_INTRO_DURATION_MS) has
+  // finished, so this pop-up never appears underneath — or racing — that animation.
+  const [procedureDialogOpen, setProcedureDialogOpen] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setProcedureDialogOpen(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
   /** False until the user picks a procedure in the pop-up. While false the selector is the
    *  only thing on screen — the input card stays hidden behind it. */
   const [hasChosenProcedure, setHasChosenProcedure] = useState(false);
@@ -807,8 +815,8 @@ export default function MapComponent() {
     setDrawerOpen(true);
     if (!mode || mode === calculationMode) return;
     setCalculationMode(mode);
-    setArea('');
-    handleResetRecommendationRows({ silent: true });
+    // Inputs for both procedures (roof area, monthly usage table) are kept as-is when
+    // switching — only an explicit Reset or a page refresh should clear them.
     if (mode === 'consumption') applyHiddenConsumptionDefaults();
   };
 
@@ -827,24 +835,26 @@ export default function MapComponent() {
     setDrawerOpen(true);
   };
 
-  /** "Switch procedure" from the results header: flips to the other method, clears the
-   *  procedure-specific input so it is re-entered, and reopens the input card. Since that
-   *  input is always cleared as part of the switch, it is always missing right after — flag
-   *  it (and anything else still empty) instead of leaving the user to notice a blank form. */
+  /** "Switch procedure" from the results header: flips to the other method and reopens the
+   *  input card. Inputs are kept as-is across the switch (only Reset or a refresh clears
+   *  them), so only flag whatever is actually still empty instead of assuming a blank form. */
   const handleSwitchProcedure = () => {
     const nextMode = calculationMode === 'consumption' ? 'rooftop' : 'consumption';
     setCalculationMode(nextMode);
-    setArea('');
-    handleResetRecommendationRows({ silent: true });
     if (nextMode === 'consumption') applyHiddenConsumptionDefaults();
     setShowResultsModal(false);
     setDrawerOpen(true);
 
+    const hasMonthlyUsage = recommendationRows.some(
+      (row) => row.electricBill || row.electricRate || row.monthlyConsumption
+    );
     const missingFields = nextMode === 'consumption'
-      ? ['Monthly Electricity Usage (at least one month)', ...(!panelSize ? ['Panel Size'] : [])]
-      : ['Roof Area', ...(!panelSize ? ['Panel Size'] : [])];
-    setSnackbarMessage(`Please fill in the required inputs to continue: ${missingFields.join(', ')}`);
-    setSnackbarOpen(true);
+      ? [...(!hasMonthlyUsage ? ['Monthly Electricity Usage (at least one month)'] : []), ...(!panelSize ? ['Panel Size'] : [])]
+      : [...(!area ? ['Roof Area'] : []), ...(!panelSize ? ['Panel Size'] : [])];
+    if (missingFields.length) {
+      setSnackbarMessage(`Please fill in the required inputs to continue: ${missingFields.join(', ')}`);
+      setSnackbarOpen(true);
+    }
     setSubmitted(true);
     setTouchedFields((prev) => ({ ...prev, area: true, panelSize: true }));
   };
@@ -900,8 +910,7 @@ export default function MapComponent() {
       }
 
       // Fetch location name for display
-      fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${OPENCAGE_API_KEY}`)
-        .then(res => res.json())
+      reverseGeocode(lat, lng)
         .then(data => setLocationName(data.results[0]?.formatted || 'Unknown location'))
         .catch(() => setLocationName('Location loaded'));
     }
@@ -1026,8 +1035,7 @@ export default function MapComponent() {
         }
 
         // Fetch location name for display
-        fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${OPENCAGE_API_KEY}`)
-          .then(res => res.json())
+        reverseGeocode(lat, lng)
           .then(data => setLocationName(data.results[0]?.formatted || 'Unknown location'))
           .catch(() => setLocationName('Location loaded'));
       }
@@ -1446,10 +1454,7 @@ export default function MapComponent() {
       setLongitude(lng.toFixed(6));
       setMarkerPosition(coords);
 
-      const geoRes = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${OPENCAGE_API_KEY}`
-      );
-      const geoData = await geoRes.json();
+      const geoData = await reverseGeocode(lat, lng);
       setLocationName(geoData.results[0]?.formatted || 'Unknown location');
       mapRef.current?.flyTo(coords, 16, { duration: 1.5 });
     } catch (error) {
@@ -1470,10 +1475,7 @@ export default function MapComponent() {
         setLongitude(parseFloat(lon).toFixed(6));
         setSearchError('');
 
-        const geoRes = await fetch(
-          `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${OPENCAGE_API_KEY}`
-        );
-        const geoData = await geoRes.json();
+        const geoData = await reverseGeocode(lat, lon);
         const resolvedLocationName = geoData.results[0]?.formatted || 'Unknown location';
         setLocationName(resolvedLocationName);
         mapRef.current.flyTo(position, 16, { duration: 1.5 });
@@ -1606,10 +1608,7 @@ export default function MapComponent() {
     setLocationName('Fetching address...');
 
     try {
-      const geoRes = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${OPENCAGE_API_KEY}`
-      );
-      const geoData = await geoRes.json();
+      const geoData = await reverseGeocode(lat, lng);
       setLocationName(geoData.results[0]?.formatted || 'Unknown location');
     } catch {
       setLocationName('Error fetching location');
@@ -1635,10 +1634,63 @@ export default function MapComponent() {
           setArea={setArea}
         />
 
-        {/* Floating FABs - Always show for easy access */}
-        <Box sx={{ 
-          position: 'fixed', 
-          top: { xs: 80, sm: 90 }, 
+        {/* Back to landing page — vertically centered on the left edge, expands on hover */}
+        {!popupOpen && (
+          <Box
+            component="button"
+            aria-label="back to landing page"
+            onClick={() => navigate('/')}
+            sx={{
+              position: 'fixed',
+              top: '50%',
+              left: 0,
+              transform: 'translateY(-50%)',
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              border: 'none',
+              borderTopRightRadius: 999,
+              borderBottomRightRadius: 999,
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+              bgcolor: '#1976d2',
+              color: 'white',
+              cursor: 'pointer',
+              py: 1.25,
+              pl: 1.25,
+              pr: 1.25,
+              boxShadow: '0 4px 16px rgba(0,0,0,0.35)',
+              transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              overflow: 'hidden',
+              maxWidth: 44,
+              '&:hover': {
+                maxWidth: 200,
+                pr: 2.5,
+                bgcolor: '#1565c0',
+                boxShadow: '0 6px 22px rgba(0,0,0,0.45)',
+                transform: 'translateY(-50%) scale(1.04)'
+              },
+              '&:active': {
+                transform: 'translateY(-50%) scale(0.96)'
+              }
+            }}
+          >
+            <ArrowBackRoundedIcon sx={{ flexShrink: 0 }} />
+            <Typography
+              variant="body2"
+              sx={{ fontWeight: 700, whiteSpace: 'nowrap' }}
+            >
+              Back to Home
+            </Typography>
+          </Box>
+        )}
+
+        {/* Floating FABs - hidden while the About/Definition/How to Use dialog is open, since they overlap it */}
+        {!popupOpen && (
+        <Box sx={{
+          position: 'fixed',
+          top: { xs: 80, sm: 90 },
           right: (() => {
             if (drawerOpen) {
               // Only drawer open: position to avoid drawer
@@ -1749,8 +1801,10 @@ export default function MapComponent() {
               </Typography>
             </Box>
           </Box>
+        )}
 
-        {/* Floating user evaluation button */}
+        {/* Floating user evaluation button - hidden while the About/Definition/How to Use dialog is open */}
+        {!popupOpen && (
         <Box
           sx={{
             position: 'fixed',
@@ -1823,6 +1877,7 @@ export default function MapComponent() {
             </Box>
           </Box>
         </Box>
+        )}
 
         {/* Right panel - floating card, map stays fully visible (no backdrop) */}
         <Drawer
