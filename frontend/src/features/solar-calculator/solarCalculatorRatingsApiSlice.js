@@ -11,13 +11,14 @@ export const solarCalculatorRatingsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: [{ type: 'SolarCalculatorRating', id: 'LIST' }]
     }),
     getSolarCalculatorRatings: builder.query({
-      query: ({ page = 1, limit = 20, search = '' } = {}) => ({
+      query: ({ page = 1, limit = 20, search = '', adminToken = '' } = {}) => ({
         url: '/solar-calculator-ratings',
         params: {
           page,
           limit,
           search
-        }
+        },
+        headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : undefined
       }),
       providesTags: (result) =>
         result?.data
@@ -28,11 +29,19 @@ export const solarCalculatorRatingsApiSlice = apiSlice.injectEndpoints({
           : [{ type: 'SolarCalculatorRating', id: 'LIST' }]
     }),
     deleteSolarCalculatorRating: builder.mutation({
-      query: (id) => ({
+      query: ({ id, adminToken }) => ({
         url: `/solar-calculator-ratings/${id}`,
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : undefined
       }),
       invalidatesTags: [{ type: 'SolarCalculatorRating', id: 'LIST' }]
+    }),
+    adminLogin: builder.mutation({
+      query: ({ email, password }) => ({
+        url: '/admin/login',
+        method: 'POST',
+        body: { email, password }
+      })
     })
   })
 })
@@ -40,5 +49,6 @@ export const solarCalculatorRatingsApiSlice = apiSlice.injectEndpoints({
 export const {
   useSubmitSolarCalculatorRatingMutation,
   useGetSolarCalculatorRatingsQuery,
-  useDeleteSolarCalculatorRatingMutation
+  useDeleteSolarCalculatorRatingMutation,
+  useAdminLoginMutation
 } = solarCalculatorRatingsApiSlice

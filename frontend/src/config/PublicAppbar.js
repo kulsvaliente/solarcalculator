@@ -1,6 +1,7 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useCalculatorUI } from "../features/solar-calculator/context/CalculatorUIContext"
+import RatingsPanel from "../features/solar-calculator/components/RatingsPanel"
 
 const PublicAppbar = () => {
   const navigate = useNavigate()
@@ -48,6 +49,8 @@ const PublicAppbar = () => {
               Solar Rooftop Calculator
             </Typography>
           </Box>
+
+          <RatingsPanel />
         </Toolbar>
       </AppBar>
     </>

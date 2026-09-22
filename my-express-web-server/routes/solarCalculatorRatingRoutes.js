@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const verifyAdmin = require('../middleware/verifyAdmin')
 const {
     submitSolarCalculatorRating,
     getSolarCalculatorRatings,
@@ -11,6 +12,6 @@ router.route('/')
     .post(submitSolarCalculatorRating)
 
 router.route('/:id')
-    .delete(deleteSolarCalculatorRating)
+    .delete(verifyAdmin, deleteSolarCalculatorRating)
 
 module.exports = router

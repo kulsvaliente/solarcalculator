@@ -1,4 +1,5 @@
 const SolarCalculatorRating = require('../models/SolarCalculatorRating')
+const { verifyAdminToken } = require('../utils/adminToken')
 
 const toPositiveInt = (value, fallback) => {
     const parsed = Number.parseInt(value, 10)
@@ -66,8 +67,15 @@ const getSolarCalculatorRatings = async (req, res) => {
         ? Number(average[0].averageRating.toFixed(2))
         : 0
 
+    // Comments are admin-only — strip them out for everyone else so they never appear in the
+    // public response (not just hidden in the UI, since the raw response is inspectable too).
+    const authHeader = req.headers.authorization || ''
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null
+    const isAdmin = verifyAdminToken(token)
+    const responseData = isAdmin ? data : data.map(({ comment, ...rest }) => rest)
+
     return res.json({
-        data,
+        data: responseData,
         total,
         page,
         limit,

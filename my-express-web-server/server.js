@@ -39,6 +39,11 @@ const validateEnv = () => {
     if (missingProxyKeys.length) {
         baseLogger.warn({ missingProxyKeys }, 'Third-party proxy keys not configured — those features will return 502')
     }
+    const adminKeys = ['ADMIN_EMAIL', 'ADMIN_PASSWORD']
+    const missingAdminKeys = adminKeys.filter(k => !process.env[k])
+    if (missingAdminKeys.length) {
+        baseLogger.warn({ missingAdminKeys }, 'Admin login not configured — POST /admin/login will return 503')
+    }
 }
 validateEnv()
 
@@ -103,6 +108,15 @@ const proxyLimiter = rateLimit({
 })
 app.use('/api', proxyLimiter)
 
+// Tight limiter on the admin login attempt itself — this is the brute-force target.
+const adminLoginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10,
+    standardHeaders: true,
+    legacyHeaders: false,
+})
+app.use('/admin/login', adminLoginLimiter)
+
 // Set up Swagger documentation (restrict in production)
 if (process.env.NODE_ENV !== 'production') {
     setupSwagger(app)
@@ -115,6 +129,7 @@ app.use('/pricing', require('./routes/pricingRoutes'))
 app.use('/solar-calculator-activity-logs', require('./routes/solarCalculatorActivityLogRoutes'))
 app.use('/solar-calculator-ratings', require('./routes/solarCalculatorRatingRoutes'))
 app.use('/api', require('./routes/proxyRoutes'))
+app.use('/admin', require('./routes/adminAuthRoutes'))
 
 // Liveness
 app.get('/livez', (req, res) => res.sendStatus(200))
