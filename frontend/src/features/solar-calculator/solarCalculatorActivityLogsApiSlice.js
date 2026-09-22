@@ -11,13 +11,14 @@ export const solarCalculatorActivityLogsApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: [{ type: 'SolarCalculatorActivityLog', id: 'LIST' }]
     }),
     getSolarCalculatorActivityLogs: builder.query({
-      query: ({ page = 1, limit = 20, search = '' } = {}) => ({
+      query: ({ page = 1, limit = 20, search = '', adminToken = '' } = {}) => ({
         url: '/solar-calculator-activity-logs',
         params: {
           page,
           limit,
           search
-        }
+        },
+        headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : undefined
       }),
       providesTags: (result) =>
         result?.data
@@ -28,9 +29,10 @@ export const solarCalculatorActivityLogsApiSlice = apiSlice.injectEndpoints({
           : [{ type: 'SolarCalculatorActivityLog', id: 'LIST' }]
     }),
     deleteSolarCalculatorActivityLog: builder.mutation({
-      query: (id) => ({
+      query: ({ id, adminToken }) => ({
         url: `/solar-calculator-activity-logs/${id}`,
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: adminToken ? { Authorization: `Bearer ${adminToken}` } : undefined
       }),
       invalidatesTags: [{ type: 'SolarCalculatorActivityLog', id: 'LIST' }]
     })

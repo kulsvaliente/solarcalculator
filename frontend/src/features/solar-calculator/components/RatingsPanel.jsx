@@ -16,7 +16,9 @@ import {
   Button,
   TextField,
   Alert,
-  CircularProgress
+  CircularProgress,
+  Tabs,
+  Tab
 } from '@mui/material';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -28,6 +30,10 @@ import {
   useDeleteSolarCalculatorRatingMutation,
   useAdminLoginMutation
 } from '../solarCalculatorRatingsApiSlice';
+import {
+  useGetSolarCalculatorActivityLogsQuery,
+  useDeleteSolarCalculatorActivityLogMutation
+} from '../solarCalculatorActivityLogsApiSlice';
 
 // The admin credential itself is checked server-side (POST /admin/login) — nothing secret
 // lives in this file. A successful login returns a signed, short-lived token that's sent as
@@ -57,6 +63,7 @@ const RatingsPanel = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [activeTab, setActiveTab] = useState('ratings');
 
   const { data, isLoading, isFetching } = useGetSolarCalculatorRatingsQuery(
     { page: 1, limit: 100, adminToken },
@@ -65,9 +72,21 @@ const RatingsPanel = () => {
   const [deleteRating, { isLoading: isDeleting }] = useDeleteSolarCalculatorRatingMutation();
   const [adminLogin, { isLoading: isLoggingIn }] = useAdminLoginMutation();
 
+  const {
+    data: logsData,
+    isLoading: isLoadingLogs,
+    isFetching: isFetchingLogs
+  } = useGetSolarCalculatorActivityLogsQuery(
+    { page: 1, limit: 100, adminToken },
+    { skip: !open || !isAdmin }
+  );
+  const [deleteActivityLog, { isLoading: isDeletingLog }] = useDeleteSolarCalculatorActivityLogMutation();
+
   const ratings = data?.data ?? [];
   const averageRating = Number(data?.averageRating) || 0;
   const total = Number(data?.total) || 0;
+  const logs = logsData?.data ?? [];
+  const totalLogs = Number(logsData?.total) || 0;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -76,6 +95,7 @@ const RatingsPanel = () => {
     setLoginError('');
     setEmail('');
     setPassword('');
+    setActiveTab('ratings');
   };
 
   const handleLogin = async (e) => {
@@ -99,6 +119,7 @@ const RatingsPanel = () => {
 
   const handleLogout = () => {
     setAdminToken('');
+    setActiveTab('ratings');
     try {
       sessionStorage.removeItem(ADMIN_SESSION_KEY);
     } catch {
@@ -112,6 +133,15 @@ const RatingsPanel = () => {
       await deleteRating({ id, adminToken }).unwrap();
     } catch (err) {
       console.error('Failed to delete rating:', err);
+    }
+  };
+
+  const handleDeleteLog = async (id) => {
+    if (!window.confirm('Delete this solar log entry? This cannot be undone.')) return;
+    try {
+      await deleteActivityLog({ id, adminToken }).unwrap();
+    } catch (err) {
+      console.error('Failed to delete activity log:', err);
     }
   };
 
@@ -145,9 +175,21 @@ const RatingsPanel = () => {
 
         <DialogContent dividers>
           {isAdmin ? (
-            <Alert severity="success" icon={<LockRoundedIcon fontSize="inherit" />} sx={{ mb: 2 }}>
-              Signed in as admin — comments and delete are visible below.
-            </Alert>
+            <>
+              <Alert severity="success" icon={<LockRoundedIcon fontSize="inherit" />} sx={{ mb: 2 }}>
+                Signed in as admin — comments and delete are visible below.
+              </Alert>
+              <Tabs
+                value={activeTab}
+                onChange={(e, val) => setActiveTab(val)}
+                sx={{ mb: 2, minHeight: 36 }}
+                textColor="primary"
+                indicatorColor="primary"
+              >
+                <Tab value="ratings" label="Ratings" sx={{ minHeight: 36, py: 0.5 }} />
+                <Tab value="logs" label={`Solar Logs${totalLogs ? ` (${totalLogs})` : ''}`} sx={{ minHeight: 36, py: 0.5 }} />
+              </Tabs>
+            </>
           ) : showLogin ? (
             <Box component="form" onSubmit={handleLogin} sx={{ mb: 2 }}>
               <Alert severity="info" sx={{ mb: 2 }}>
@@ -199,58 +241,109 @@ const RatingsPanel = () => {
             </Box>
           )}
 
-          {isLoading || isFetching ? (
-            <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
-              <CircularProgress size={28} />
-            </Box>
-          ) : ratings.length === 0 ? (
-            <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 4 }}>
-              No ratings submitted yet.
-            </Typography>
-          ) : (
-            <List disablePadding>
-              {ratings.map((r, idx) => (
-                <React.Fragment key={r._id}>
-                  {idx > 0 && <Divider component="li" />}
-                  <ListItem
-                    alignItems="flex-start"
-                    sx={{ px: 0, py: 1.5 }}
-                    secondaryAction={
-                      isAdmin ? (
+          {(!isAdmin || activeTab === 'ratings') && (
+            isLoading || isFetching ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
+                <CircularProgress size={28} />
+              </Box>
+            ) : ratings.length === 0 ? (
+              <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 4 }}>
+                No ratings submitted yet.
+              </Typography>
+            ) : (
+              <List disablePadding>
+                {ratings.map((r, idx) => (
+                  <React.Fragment key={r._id}>
+                    {idx > 0 && <Divider component="li" />}
+                    <ListItem
+                      alignItems="flex-start"
+                      sx={{ px: 0, py: 1.5 }}
+                      secondaryAction={
+                        isAdmin ? (
+                          <IconButton
+                            edge="end"
+                            aria-label="Delete rating"
+                            onClick={() => handleDelete(r._id)}
+                            disabled={isDeleting}
+                            color="error"
+                          >
+                            <DeleteRoundedIcon fontSize="small" />
+                          </IconButton>
+                        ) : null
+                      }
+                    >
+                      <ListItemText
+                        primary={
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                            <Rating value={r.rating} readOnly size="small" />
+                            <Typography variant="caption" color="text.secondary">
+                              {formatDate(r.createdAt)}
+                            </Typography>
+                          </Box>
+                        }
+                        secondary={
+                          isAdmin ? (
+                            <Typography variant="body2" sx={{ mt: 0.5, color: 'text.primary' }}>
+                              {r.comment || <em>No comment</em>}
+                              {r.locationName ? ` — ${r.locationName}` : ''}
+                            </Typography>
+                          ) : null
+                        }
+                      />
+                    </ListItem>
+                  </React.Fragment>
+                ))}
+              </List>
+            )
+          )}
+
+          {isAdmin && activeTab === 'logs' && (
+            isLoadingLogs || isFetchingLogs ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
+                <CircularProgress size={28} />
+              </Box>
+            ) : logs.length === 0 ? (
+              <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 4 }}>
+                No solar logs yet.
+              </Typography>
+            ) : (
+              <List disablePadding>
+                {logs.map((log, idx) => (
+                  <React.Fragment key={log._id}>
+                    {idx > 0 && <Divider component="li" />}
+                    <ListItem
+                      alignItems="flex-start"
+                      sx={{ px: 0, py: 1.5 }}
+                      secondaryAction={
                         <IconButton
                           edge="end"
-                          aria-label="Delete rating"
-                          onClick={() => handleDelete(r._id)}
-                          disabled={isDeleting}
+                          aria-label="Delete solar log"
+                          onClick={() => handleDeleteLog(log._id)}
+                          disabled={isDeletingLog}
                           color="error"
                         >
                           <DeleteRoundedIcon fontSize="small" />
                         </IconButton>
-                      ) : null
-                    }
-                  >
-                    <ListItemText
-                      primary={
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <Rating value={r.rating} readOnly size="small" />
-                          <Typography variant="caption" color="text.secondary">
-                            {formatDate(r.createdAt)}
-                          </Typography>
-                        </Box>
                       }
-                      secondary={
-                        isAdmin ? (
-                          <Typography variant="body2" sx={{ mt: 0.5, color: 'text.primary' }}>
-                            {r.comment || <em>No comment</em>}
-                            {r.locationName ? ` — ${r.locationName}` : ''}
+                    >
+                      <ListItemText
+                        primary={
+                          <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                            {log.locationName || log.locationInput}
                           </Typography>
-                        ) : null
-                      }
-                    />
-                  </ListItem>
-                </React.Fragment>
-              ))}
-            </List>
+                        }
+                        secondary={
+                          <Typography variant="caption" color="text.secondary" component="span" sx={{ display: 'block', mt: 0.25 }}>
+                            {log.source} · {formatDate(log.createdAt)}
+                            {log.searchQuery ? ` · searched "${log.searchQuery}"` : ''}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                  </React.Fragment>
+                ))}
+              </List>
+            )
           )}
         </DialogContent>
 
