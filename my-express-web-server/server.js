@@ -28,7 +28,7 @@ connectDB()
 // Assert critical environment variables in production
 const validateEnv = () => {
     if (process.env.NODE_ENV !== 'production') return
-    const required = ['SECRET_KEY', 'ALLOWED_ORIGINS', 'DATABASE_URI', 'ARECGIS_API_URL']
+    const required = ['SECRET_KEY', 'ALLOWED_ORIGINS', 'DATABASE_URI']
     const missing = required.filter(k => !process.env[k] || String(process.env[k]).length < 8)
     if (missing.length) {
         baseLogger.fatal({ missing }, 'Missing or weak required environment variables')

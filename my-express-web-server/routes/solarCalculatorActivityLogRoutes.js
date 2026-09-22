@@ -1,16 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const { forwardToArecgis } = require('../services/arecgisProxy')
-
-// Activity logs ("solar logs") are forwarded to arecgis's own API so they land in the
-// arecgis admin account, even though this backend is otherwise standalone.
-const forward = forwardToArecgis('/solar-calculator-activity-logs')
+const {
+    createSolarCalculatorActivityLog,
+    getSolarCalculatorActivityLogs,
+    deleteSolarCalculatorActivityLog
+} = require('../controllers/solarCalculatorActivityLogController')
 
 router.route('/')
-    .get(forward)
-    .post(forward)
+    .get(getSolarCalculatorActivityLogs)
+    .post(createSolarCalculatorActivityLog)
 
 router.route('/:id')
-    .delete(forward)
+    .delete(deleteSolarCalculatorActivityLog)
 
 module.exports = router
